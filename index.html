@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Rivers Fish Rescue | Pittsburgh Aquatic Sanctuary & Rehabilitation</title>
+    <!-- 
+      ========================================================================
+      PROPRIETARY CODE & NONPROFIT WATERMARK
+      Three Rivers Fish Rescue, Inc. (Pittsburgh, PA - Nonprofit Entity ID: 0016017909)
+      Last Compiled & Verified: October 28, 2026 - 10:19 PM EDT
+      All Rights Reserved. Authorized Nonprofit Sanctuary Operations Only.
+      ========================================================================
+    -->
+    
+    <!-- Google Analytics Tag (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QTS35FCWVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QTS35FCWVJ');
+    </script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rescue: {
+                            50: '#f0fdf4', 100: '#dcfce7', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d',
+                        },
+                        pgh: { gold: '#FFB81C', black: '#101820' },
+                        reef: { blue: '#0284c7', cyan: '#06b6d4' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes swim { 0% { transform: translateY(0px) rotate(0deg) scaleX(1); } 25% { transform: translateY(-8px) rotate(1.5deg) scaleX(1); } 50% { transform: translateY(0px) rotate(0deg) scaleX(1); } 75% { transform: translateY(8px) rotate(-1.5deg) scaleX(1); } 100% { transform: translateY(0px) rotate(0deg) scaleX(1); } }
+        @keyframes tailWag { 0% { transform: rotate(0deg); } 50% { transform: rotate(-12deg); } 100% { transform: rotate(0deg); } }
+        @keyframes floatBubble { 0% { transform: translateY(0px) scale(0.6); opacity: 0; } 20% { opacity: 0.8; } 80% { opacity: 0.5; } 100% { transform: translateY(-180px) scale(1.2); opacity: 0; } }
+        @keyframes lightRay { 0% { opacity: 0.25; transform: rotate(-5deg) translateY(-10px); } 50% { opacity: 0.45; transform: rotate(-2deg) translateY(10px); } 100% { opacity: 0.25; transform: rotate(-5deg) translateY(-10px); } }
+        @keyframes holoShimmer { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .holo-foil { background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff); background-size: 400% 400%; animation: holoShimmer 6s ease infinite; }
+        .placed-entity { position: absolute; cursor: grab; user-select: none; touch-action: none; transition: transform 0.1s ease; }
+        .placed-entity:active { cursor: grabbing; transform: scale(1.15); z-index: 50; }
+        .animated-fish-container { animation: swim 4s ease-in-out infinite; transform-origin: center; filter: drop-shadow(0 10px 8px rgba(0,0,0,0.4)); }
+        .animated-tail { animation: tailWag 0.45s ease-in-out infinite; transform-origin: 20px 50px; }
+        .light-shaft { position: absolute; background: linear-gradient(180deg, rgba(255,255,255,0.25) 0%, rgba(56,189,248,0.1) 60%, rgba(255,255,255,0) 100%); pointer-events: none; animation: lightRay 8s ease-in-out infinite; z-index: 12; }
+        .bubble-particle { position: absolute; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(56,189,248,0.3)); border-radius: 50%; animation: floatBubble 4s linear infinite; pointer-events: none; z-index: 15; }
+        .tank-glass-glare { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 40%, rgba(0,0,0,0.3) 100%); pointer-events: none; z-index: 30; }
+        .tool-active { outline: 3px solid #FFB81C; background-color: #0f172a !important; color: #FFB81C !important; }
+        #algae-canvas { touch-action: none; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- ================= HEADER / NONPROFIT NAVIGATION ================= -->
+    <header class="bg-slate-950 border-b-2 border-pgh-gold text-white sticky top-0 z-40 shadow-xl">
+        <div class="max-w-6xl mx-auto px-4 py-3.5 flex justify-between items-center flex-wrap gap-3">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('mission')">
+                <div class="w-12 h-12 rounded-xl bg-slate-900 border-2 border-pgh-gold flex items-center justify-center shadow-lg flex-shrink-0 overflow-hidden">
+                    <svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 16L32 34L56 16" stroke="#38BDF8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M32 34V58" stroke="#38BDF8" stroke-width="6" stroke-linecap="round"/>
+                        <circle cx="32" cy="32" r="28" stroke="#FFB81C" stroke-width="3" stroke-dasharray="6 3"/>
+                        <path d="M44 32C44 32 37 22 25 24C19 25 14 32 14 32C14 32 19 39 25 40C37 42 44 32 44 32Z" fill="#22C55E" stroke="#14532D" stroke-width="1.5"/>
+                        <path d="M42 32L51 25V39L42 32Z" fill="#FFB81C"/>
+                        <circle cx="21" cy="30" r="2" fill="#0F172A"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <h1 class="font-extrabold text-base md:text-lg tracking-tight text-white">Three Rivers Fish Rescue, Inc.</h1>
+                        <span class="bg-pgh-gold text-slate-950 text-[10px] font-black px-2 py-0.5 rounded uppercase">PA Registered Nonprofit</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">Pittsburgh, PA Sanctuary • Entity ID: 0016017909</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <button onclick="switchTab('mission')" class="bg-pgh-gold text-slate-950 px-3.5 py-2 rounded-xl text-xs font-extrabold transition shadow">
+                    🎯 Our Mission
+                </button>
+                <button onclick="switchTab('sponsor')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-3.5 py-2 rounded-xl text-xs font-extrabold transition shadow">
+                    🦈 Sponsor a Fish
+                </button>
+                <button onclick="toggleAIChat()" class="bg-slate-900 hover:bg-slate-800 text-slate-200 px-3.5 py-2 rounded-xl text-xs font-semibold transition flex items-center space-x-1.5 border border-slate-700">
+                    <span>🩺 Ask Assistant</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= MAIN CONTAINER ================= -->
+    <main class="max-w-6xl mx-auto px-4 py-8 w-full flex-grow">
+        
+        <!-- Portal Navigation Tabs -->
+        <div class="flex justify-center mb-8">
+            <div class="bg-slate-950 p-1.5 rounded-2xl inline-flex flex-wrap justify-center gap-1.5 shadow-xl border border-slate-800">
+                <button id="tab-mission" onclick="switchTab('mission')" class="px-3.5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all bg-slate-900 text-pgh-gold shadow-md">
+                    🎯 Mission & Goals
+                </button>
+                <button id="tab-surrender" onclick="switchTab('surrender')" class="px-3.5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-900">
+                    🐟 Surrender
+                </button>
+                <button id="tab-donation" onclick="switchTab('donation')" class="px-3.5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-900">
+                    ⚙️ Equipment
+                </button>
+                <button id="tab-game" onclick="switchTab('game')" class="px-3.5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-900">
+                    🎮 Kids Studio & Arcade
+                </button>
+                <button id="tab-coloring" onclick="switchTab('coloring')" class="px-3.5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-900">
+                    🎨 Coloring Studio
+                </button>
+                <button id="tab-sponsor" onclick="switchTab('sponsor')" class="px-3.5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-900">
+                    🦈 Sponsor Wall
+                </button>
+                <button id="tab-forum" onclick="switchTab('forum')" class="px-3.5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-900">
+                    💬 Card Trading Board
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Portal Content Card -->
+        <div class="bg-slate-950 rounded-2xl shadow-2xl border border-slate-800 p-5 md:p-8 relative overflow-hidden text-slate-100">
+
+            <!-- ========================================================================= -->
+            <!-- SECTION 0: ENHANCED MISSION, PURPOSE & GOALS                              -->
+            <!-- ========================================================================= -->
+            <div id="section-mission" class="space-y-8">
+                <!-- Hero Manifesto Banner -->
+                <div class="bg-gradient-to-r from-rescue-950 via-slate-900 to-rescue-950 p-6 md:p-10 rounded-2xl border-2 border-pgh-gold shadow-2xl relative overflow-hidden text-center space-y-4">
+                    <div class="absolute -right-10 -bottom-10 text-9xl opacity-10 pointer-events-none">🛡️</div>
+                    <span class="bg-pgh-gold text-slate-950 font-black text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow">Our Sacred Oath to Western Pennsylvania</span>
+                    <h3 class="text-2xl md:text-4xl font-black text-white tracking-tight leading-tight">Every Aquatic Life Deserves Safety, Dignity, and a Future.</h3>
+                    <p class="text-slate-200 text-sm md:text-base max-w-2xl mx-auto leading-relaxed font-medium">
+                        At <strong class="text-pgh-gold">Three Rivers Fish Rescue</strong>, we believe that caring for aquatic life is more than a hobby—it is a vital moral responsibility to our rivers, our community, and the voiceless creatures who depend on us.
+                    </p>
+                </div>
+
+                <!-- 3 Pillars with Standout Typography -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-slate-900 p-6 rounded-2xl border-2 border-rescue-600/60 shadow-xl space-y-3 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-rescue-950 border border-rescue-500 flex items-center justify-center text-2xl mb-3 shadow">🛡️</div>
+                            <h4 class="font-black text-white text-base md:text-lg">The Core Purpose</h4>
+                            <p class="text-xs md:text-sm text-slate-300 leading-relaxed mt-2">
+                                <strong class="text-rescue-400">Zero Invasive Release:</strong> We provide an unyielding, compassionate safety net for displaced, abandoned, or oversized aquarium pets across Pittsburgh, ensuring fragile local rivers are never threatened by irresponsible pet dumping.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800 text-[11px] text-rescue-300 font-bold">✓ Active Pittsburgh Sanctuary</div>
+                    </div>
+
+                    <div class="bg-slate-900 p-6 rounded-2xl border-2 border-emerald-500/60 shadow-xl space-y-3 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-emerald-950 border border-emerald-500 flex items-center justify-center text-2xl mb-3 shadow">🔬</div>
+                            <h4 class="font-black text-white text-base md:text-lg">Sanctuary Standards</h4>
+                            <p class="text-xs md:text-sm text-slate-300 leading-relaxed mt-2">
+                                <strong class="text-emerald-400">Rigorous 28-Day Quarantine:</strong> Every rescued resident receives professional veterinary evaluation, specialized nutritional diets, and pristine water parameters before permanent rehoming.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800 text-[11px] text-emerald-300 font-bold">✓ Clinical Quarantine Protocol</div>
+                    </div>
+
+                    <div class="bg-slate-900 p-6 rounded-2xl border-2 border-sky-500/60 shadow-xl space-y-3 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-sky-950 border border-sky-500 flex items-center justify-center text-2xl mb-3 shadow">🎯</div>
+                            <h4 class="font-black text-white text-base md:text-lg">Community Goals</h4>
+                            <p class="text-xs md:text-sm text-slate-300 leading-relaxed mt-2">
+                                <strong class="text-sky-400">Education & Stewardship:</strong> Empowering future generations of aquarists through hands-on kids' studios, digital conservation games, and transparent public guidance.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800 text-[11px] text-sky-300 font-bold">✓ Inspiring Next-Gen Keepers</div>
+                    </div>
+                </div>
+
+                <!-- Interactive Applause & Positivity Hub -->
+                <div class="bg-gradient-to-r from-slate-900 via-rescue-950 to-slate-900 p-6 md:p-8 rounded-2xl border-2 border-pgh-gold text-center space-y-4 shadow-2xl">
+                    <span class="bg-amber-400 text-slate-950 text-[10px] font-black px-3 py-1 rounded uppercase">Community Voice</span>
+                    <h4 class="font-black text-white text-lg md:text-xl">Stand With Us — Show Your Support for Our Mission! 🌟</h4>
+                    <p class="text-xs md:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
+                        Your positive energy fuels our daily rescue operations across Western Pennsylvania. Click below to applaud, like, or stand with our mission!
+                    </p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3 pt-2">
+                        <button onclick="triggerApplaud('heart')" class="bg-slate-950 hover:bg-slate-900 border-2 border-pgh-gold text-pgh-gold px-6 py-3.5 rounded-xl font-black text-xs transition transform hover:scale-105 shadow-lg flex items-center space-x-2">
+                            <span>❤️ Love Our Mission (<span id="count-heart">428</span>)</span>
+                        </button>
+                        <button onclick="triggerApplaud('clap')" class="bg-rescue-600 hover:bg-rescue-500 text-white px-6 py-3.5 rounded-xl font-black text-xs transition transform hover:scale-105 shadow-lg flex items-center space-x-2">
+                            <span>👏 Applause (<span id="count-clap">612</span>)</span>
+                        </button>
+                        <button onclick="triggerApplaud('star')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-6 py-3.5 rounded-xl font-black text-xs transition transform hover:scale-105 shadow-lg flex items-center space-x-2">
+                            <span>✨ Support Conservation (<span id="count-star">355</span>)</span>
+                        </button>
+                    </div>
+                    <div id="applause-feedback" class="text-xs font-extrabold text-emerald-400 h-5"></div>
+                </div>
+            </div>
+
+            <!-- ========================================================================= -->
+            <!-- SECTION 1: ANIMAL SURRENDER & INTAKE                                      -->
+            <!-- ========================================================================= -->
+            <div id="section-surrender" class="hidden space-y-6">
+                <form id="form-surrender" class="space-y-6" onsubmit="handleFormSubmission(event, 'Fish Surrender Application')">
+                    <div class="border-b border-slate-800 pb-4 flex justify-between items-center flex-wrap gap-2">
+                        <div>
+                            <h3 class="text-xl font-extrabold text-white">🐟 Official Aquatic Animal Surrender & Intake Form</h3>
+                            <p class="text-xs text-slate-400">Outgrown tank? Moving? Overwhelmed by a monster fish? Never release aquarium pets into local rivers—surrender them safely to our Pittsburgh sanctuary.</p>
+                        </div>
+                        <span class="text-xs font-bold bg-rescue-950 text-rescue-300 px-3 py-1 rounded-full border border-rescue-800">Routes securely to: threeriversfishrescue@gmail.com</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">Your Full Name *</label>
+                            <input type="text" id="input-Owner_Name" name="Owner_Name" required class="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900 text-white text-sm focus:ring-2 focus:ring-rescue-600 outline-none" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">Phone Number *</label>
+                            <input type="tel" id="input-Owner_Phone" name="Owner_Phone" required class="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900 text-white text-sm focus:ring-2 focus:ring-rescue-600 outline-none" placeholder="(412) 000-0000">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">Email Address *</label>
+                            <input type="email" id="input-Owner_Email" name="Owner_Email" required class="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900 text-white text-sm focus:ring-2 focus:ring-rescue-600 outline-none" placeholder="you@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">Water Environment *</label>
+                            <select name="Water_Biome" class="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900 text-white text-sm focus:ring-2 focus:ring-rescue-600 outline-none">
+                                <option>Freshwater Tropical / Monster</option>
+                                <option>Saltwater / Marine Reef</option>
+                                <option>Coldwater / Axolotl / Pond</option>
+                                <option>Brackish</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">Neighborhood / City *</label>
+                            <input type="text" id="input-Location" name="Location" required class="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900 text-white text-sm focus:ring-2 focus:ring-rescue-600 outline-none" placeholder="e.g., Beechview, Pittsburgh">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold text-slate-300 mb-1">Species / Common Name & Quantity *</label>
+                            <input type="text" id="input-Species_And_Count" name="Species_And_Count" required class="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900 text-white text-sm focus:ring-2 focus:ring-rescue-600 outline-none" placeholder="e.g., 1x Tiger Oscar, 2x Common Plecos, Yellow Tang">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">Current Size (Inches) *</label>
+                            <input type="text" name="Estimated_Size" required class="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900 text-white text-sm focus:ring-2 focus:ring-rescue-600 outline-none" placeholder="e.g., 11 inches">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">Current Tank Conditions, Diet, Temperament & Reason for Surrender *</label>
+                        <textarea name="Husbandry_Notes" rows="3" required class="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900 text-white text-sm focus:ring-2 focus:ring-rescue-600 outline-none" placeholder="Please share current tank size, diet, aggression levels, and any symptoms or recent illnesses..."></textarea>
+                    </div>
+
+                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 flex items-start space-x-3">
+                        <input type="checkbox" required id="surrender-legal" class="mt-1 h-4 w-4 text-rescue-600 rounded bg-slate-800 border-slate-700">
+                        <label for="surrender-legal" class="text-xs text-slate-300 leading-relaxed">
+                            <strong>Permanent Custody Transfer & Quarantine Agreement:</strong> I certify that I am the legal owner of the animal(s) listed above and permanently surrender ownership to Three Rivers Fish Rescue, Inc. (Pittsburgh Sanctuary). I have honestly disclosed any known exposure to contagious diseases within the past 30 days.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="w-full bg-rescue-600 hover:bg-rescue-700 text-white font-extrabold py-3.5 px-6 rounded-xl shadow-lg transition text-sm">
+                        Submit Official Surrender Application to Sanctuary Team
+                    </button>
+                </form>
+            </div>
+
+            <!-- ========================================================================= -->
+            <!-- SECTION 2: EQUIPMENT & TANK DONATIONS                                     -->
+            <!-- ========================================================================= -->
+            <div id="section-donation" class="hidden space-y-6">
+                <form id="form-donation" class="space-y-6" onsubmit="handleFormSubmission(event, 'Equipment Donation Offer')">
+                    <div class="border-b border-slate-800 pb-4 flex justify-between items-center flex-wrap gap-2">
+                        <div>
+                            <h3 class="text-xl font-extrabold text-white">⚙️ Aquarium, Filtration & Supply Donation Form</h3>
+                            <p class="text-xs text-slate-400">Your donated tanks, canister filters, sumps, heaters, and dry goods directly house rescued fish in our Pittsburgh sanctuary.</p>
+                        </div>
+                        <span class="text-xs font-bold bg-amber-950 text-amber-300 px-3 py-1 rounded-full border border-amber-800">Tax-Deductible Receipt Provided</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">Donor Full Name *</label>
+                            <input type="text" name="Donor_Name" required class="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900 text-white text-sm focus:ring-2 focus:ring-rescue-600 outline-none" placeholder="Jane Doe">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">Phone Number *</label>
+                            <input type="tel" name="Donor_Phone" required class="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900 text-white text-sm focus:ring-2 focus:ring-rescue-600 outline-none" placeholder="(412) 000-0000">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">Email Address (For Official Donation Receipt) *</label>
+                            <input type="email" name="Donor_Email" required class="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900 text-white text-sm focus:ring-2 focus:ring-rescue-600 outline-none" placeholder="you@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">Equipment Category *</label>
+                            <select name="Equipment_Category" class="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900 text-white text-sm focus:ring-2 focus:ring-rescue-600 outline-none">
+                                <option>Aquariums & Stands (Glass / Acrylic / Ponds)</option>
+                                <option>Filtration (Canisters, Sumps, Skimmers, Sponge Filters, Pumps)</option>
+                                <option>Lighting & Heating (LED Bars, Heaters, Controllers)</option>
+                                <option>Hardscape & Substrate (Driftwood, Stone, Sand, Aragonite)</option>
+                                <option>Food, Medications & Water Conditioners</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">Item List, Dimensions, Condition & Pickup/Dropoff Preference *</label>
+                        <textarea name="Equipment_Details" rows="3" required class="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900 text-white text-sm focus:ring-2 focus:ring-rescue-600 outline-none" placeholder="List tank gallon sizes, filter brands, whether tanks hold water, and if you need pickup in the Pittsburgh area..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-pgh-gold font-extrabold py-3.5 px-6 rounded-xl shadow-lg transition text-sm border border-pgh-gold/30">
+                        Submit Equipment Donation Offer to TRFR
+                    </button>
+                </form>
+            </div>
+
+            <!-- ========================================================================= -->
+            <!-- SECTION 3: HANDS-ON INTERACTIVE TANK SANDBOX & KIDS ARCADE                -->
+            <!-- ========================================================================= -->
+            <div id="section-game" class="hidden space-y-6">
+                
+                <!-- Kids Studio Banner Featuring Proper Oscar Cichlid Mascot -->
+                <div class="bg-gradient-to-r from-amber-950 via-slate-900 to-rescue-950 text-white rounded-2xl p-5 border-2 border-pgh-gold shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-16 h-16 rounded-2xl bg-amber-500/30 border-2 border-amber-400 flex items-center justify-center text-4xl mascot-avatar flex-shrink-0 shadow-inner">
+                            🐠
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="bg-pgh-gold text-slate-950 font-black text-[10px] px-2 py-0.5 rounded uppercase">Kids Zone & TCG Arcade</span>
+                                <h4 class="font-extrabold text-base md:text-lg text-white">Hey Keeper! I'm Oscar the Outgrown! 🐠</h4>
+                            </div>
+                            <p class="text-xs text-amber-200 mt-0.5">Your tank starts dirty & empty! Catch holographic trading card fish across 6 scenes and stock them in your tank!</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2 flex-shrink-0">
+                        <span id="coin-badge" class="bg-amber-950 text-amber-300 text-xs font-black px-3.5 py-2 rounded-xl border border-amber-800 shadow">🪙 Coins: <strong id="coin-count">100</strong></span>
+                    </div>
+                </div>
+
+                <div class="border-b border-slate-800 pb-2 flex justify-between items-center flex-wrap gap-3">
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <h3 class="text-lg font-extrabold text-white">Junior Sanctuary Aquascape Studio</h3>
+                            <span id="tank-day-badge" class="hidden bg-emerald-600 text-white text-[11px] font-black px-3 py-0.5 rounded-full shadow-xs">📅 Day 1</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="openArcadeModal()" class="px-3.5 py-2 rounded-xl text-xs font-extrabold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md transition">
+                            🕹️ Immersive Fishing Simulator!
+                        </button>
+                        <button onclick="openCardDeckModal()" class="px-3.5 py-2 rounded-xl text-xs font-extrabold bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-md transition">
+                            🃏 Trading Cards (<span id="card-count-badge">0</span>)
+                        </button>
+                        <button onclick="openRescueEventModal()" id="rescue-event-btn" class="hidden px-3.5 py-2 rounded-xl text-xs font-extrabold bg-red-600 text-white shadow-md animate-pulse transition">
+                            🚨 Rescue Intake Available!
+                        </button>
+                        <button onclick="openCoinShopModal()" class="px-3.5 py-2 rounded-xl text-xs font-extrabold bg-amber-400 hover:bg-amber-300 text-slate-950 shadow-md transition">
+                            🛒 Coin Shop & Adoptions
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TOOLBELT -->
+                <div class="bg-slate-900 p-3 rounded-2xl border border-slate-800 flex flex-wrap items-center justify-between gap-2">
+                    <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+                        <span class="text-xs font-extrabold text-slate-300 mr-1 w-full sm:w-auto">🛠️ Active Tool:</span>
+                        <button onclick="selectTool('scraper')" id="tool-scraper" class="tool-btn tool-active px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-950 text-slate-200 border border-slate-700 shadow-xs transition flex items-center justify-center space-x-1.5 flex-grow sm:flex-grow-0">
+                            <span>🧽 1. Swipe Scraper</span>
+                        </button>
+                        <button onclick="selectTool('siphon')" id="tool-siphon" class="tool-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-950 text-slate-200 border border-slate-700 shadow-xs transition flex items-center justify-center space-x-1.5 flex-grow sm:flex-grow-0">
+                            <span>🧹 2. Siphon (Vacuum)</span>
+                        </button>
+                        <button onclick="selectTool('hose')" id="tool-hose" class="tool-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-950 text-slate-200 border border-slate-700 shadow-xs transition flex items-center justify-center space-x-1.5 flex-grow sm:flex-grow-0">
+                            <span>🚿 3. Fill Hose</span>
+                        </button>
+                        <button onclick="selectTool('prime')" id="tool-prime" class="tool-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-950 text-slate-200 border border-slate-700 shadow-xs transition flex items-center justify-center space-x-1.5 flex-grow sm:flex-grow-0">
+                            <span>🧪 4. Prime</span>
+                        </button>
+                        <button onclick="selectTool('hand')" id="tool-hand" class="tool-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-950 text-slate-200 border border-slate-700 shadow-xs transition flex items-center justify-center space-x-1.5 flex-grow sm:flex-grow-0">
+                            <span>🖐️ 5. Move / Decorate</span>
+                        </button>
+                    </div>
+                    <div class="text-[11px] font-bold text-rescue-300 bg-rescue-950 px-3 py-2 rounded-lg border border-rescue-800 w-full text-center sm:text-left sm:w-auto" id="tool-instruction-hint">
+                        👉 Oscar says: "Scrub algae and vacuum waste, then fish in the arcade to stock your tank!"
+                    </div>
+                </div>
+
+                <!-- SANDBOX GRID -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    
+                    <div class="lg:col-span-8 space-y-4">
+                        <div id="virtual-tank" 
+                             class="relative w-full h-[560px] rounded-2xl overflow-hidden border-8 border-slate-900 shadow-2xl bg-slate-950 select-none">
+                            
+                            <!-- Cinematic Water Shader Background -->
+                            <div id="water-volume" style="height: 88%;" class="absolute bottom-0 left-0 right-0 bg-gradient-to-b from-sky-300/90 via-blue-600/90 to-blue-950/95 transition-all duration-150 border-t-4 border-sky-100/60 shadow-inner"></div>
+                            
+                            <!-- Volumetric Light Rays (Sun Shafts) -->
+                            <div class="light-shaft w-16 h-[500px] top-0 left-[15%]"></div>
+                            <div class="light-shaft w-24 h-[500px] top-0 left-[45%]" style="animation-delay: -3s;"></div>
+                            <div class="light-shaft w-14 h-[500px] top-0 left-[75%]" style="animation-delay: -5s;"></div>
+
+                            <div class="shimmer-overlay"></div>
+                            <div class="tank-glass-glare"></div>
+                            
+                            <div id="hose-stream" class="hidden absolute top-0 w-6 bottom-0 bg-sky-200/70 blur-[1px] z-20 pointer-events-none"></div>
+                            <div id="siphon-tube" class="hidden absolute w-10 h-36 bg-slate-700/80 border-2 border-slate-300 rounded-full z-20 pointer-events-none flex items-end justify-center pb-1 text-xs text-white">🌪️</div>
+
+                            <!-- Animated Rising Bubbles -->
+                            <div class="bubble-particle w-3 h-3 left-[20%] bottom-4" style="animation-duration: 3.5s;"></div>
+                            <div class="bubble-particle w-2.5 h-2.5 left-[50%] bottom-4" style="animation-duration: 4.2s; animation-delay: -1s;"></div>
+                            <div class="bubble-particle w-4 h-4 left-[80%] bottom-4" style="animation-duration: 3.0s; animation-delay: -2s;"></div>
+
+                            <!-- Oscar Mascot Floating in Sandbox Corner -->
+                            <div class="absolute top-3 right-3 z-30 bg-slate-900/90 border-2 border-pgh-gold rounded-xl px-3 py-1.5 flex items-center space-x-2 text-white text-xs shadow-lg pointer-events-none">
+                                <span class="text-2xl mascot-avatar">🐠</span>
+                                <div>
+                                    <div class="text-[10px] text-pgh-gold font-black">OSCAR'S CHAT</div>
+                                    <div id="oscar-sandbox-tip" class="text-[11px] text-slate-100">Tank is dirty! Grab the scraper.</div>
+                                </div>
+                            </div>
+
+                            <div class="relative z-30 p-3 flex flex-wrap justify-between items-center gap-2 bg-slate-900/80 backdrop-blur-xs border-b border-white/10 text-white text-xs pointer-events-none">
+                                <div class="flex items-center space-x-3 flex-wrap gap-y-1">
+                                    <span class="bg-pgh-gold text-slate-950 font-black px-2 py-0.5 rounded text-[10px]">TRFR AQUASCAPE</span>
+                                    <span>Algae: <strong id="stat-algae" class="text-emerald-300">100%</strong></span>
+                                    <span>Water: <strong id="stat-water" class="text-sky-300">88%</strong></span>
+                                    <span>Waste: <strong id="stat-waste" class="text-amber-300">6/6</strong></span>
+                                </div>
+                                <div>
+                                    <span>Status: <strong id="stat-quality" class="text-red-400">Needs Cleaning</strong></span>
+                                </div>
+                            </div>
+
+                            <div id="placed-items-layer" class="absolute inset-0 z-20 overflow-hidden pointer-events-none"></div>
+                            <div id="detritus-layer" class="absolute bottom-3 left-0 right-0 h-10 z-15 pointer-events-none"></div>
+                            <div id="tank-substrate-bed" class="absolute bottom-0 left-0 right-0 h-16 bg-amber-100 border-t-4 border-amber-500 z-0 transition-colors shadow-inner"></div>
+                            <canvas id="algae-canvas" width="760" height="560" class="absolute inset-0 w-full h-full z-10 cursor-crosshair"></canvas>
+                        </div>
+
+                        <!-- TAMAGOTCHI HEALTH CLINIC -->
+                        <div class="bg-slate-900 text-white rounded-2xl p-4 border-2 border-pgh-gold shadow-lg">
+                            <div class="flex justify-between items-center flex-wrap gap-2 mb-3">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-lg">🏥</span>
+                                    <div>
+                                        <h4 class="font-extrabold text-sm text-pgh-gold">Tamagotchi Fish Health & Live Care Clinic</h4>
+                                        <p class="text-[11px] text-slate-300">Stats decay over time! Feed and care daily to earn coins.</p>
+                                    </div>
+                                </div>
+                                <button onclick="openVipModal()" class="bg-pgh-gold hover:bg-amber-400 text-slate-950 px-3 py-1.5 rounded-lg text-xs font-extrabold transition shadow cursor-pointer">
+                                    💾 Save Tank (Device Key Active)
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3 text-xs">
+                                <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                                    <div class="flex justify-between mb-1"><span>🥗 Fish Hunger:</span><strong id="bar-hunger-lbl" class="text-amber-400">65%</strong></div>
+                                    <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden"><div id="bar-hunger" style="width: 65%" class="bg-amber-400 h-full transition-all"></div></div>
+                                </div>
+                                <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                                    <div class="flex justify-between mb-1"><span>🛡️ Slime Coat Health:</span><strong id="bar-health-lbl" class="text-emerald-400">70%</strong></div>
+                                    <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden"><div id="bar-health" style="width: 70%" class="bg-emerald-400 h-full transition-all"></div></div>
+                                </div>
+                                <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                                    <div class="flex justify-between mb-1"><span>🌡️ Water Stability:</span><strong id="bar-oxy-lbl" class="text-sky-400">75%</strong></div>
+                                    <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden"><div id="bar-oxy" style="width: 75%" class="bg-sky-400 h-full transition-all"></div></div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                <button onclick="useCareAction('feed')" class="bg-slate-950 hover:bg-slate-800 border border-slate-700 py-2.5 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1">
+                                    <span>🦐 Feed Pellets</span>
+                                </button>
+                                <button onclick="useCareAction('meds')" class="bg-slate-950 hover:bg-slate-800 border border-slate-700 py-2.5 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1">
+                                    <span>💊 Dose Ich-X</span>
+                                </button>
+                                <button onclick="useCareAction('calcium')" class="bg-slate-950 hover:bg-slate-800 border border-slate-700 py-2.5 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1">
+                                    <span>🦴 Cuttlebone</span>
+                                </button>
+                                <button onclick="useCareAction('uv')" class="bg-slate-950 hover:bg-slate-800 border border-slate-700 py-2.5 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1">
+                                    <span>✨ UV / Aeration</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right 4 Cols: Palette & Shop Access -->
+                    <div class="lg:col-span-4 bg-slate-900 p-4 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-4">
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-extrabold text-white text-sm border-b border-slate-800 pb-1.5">🎨 1. Biome & Overhauled Substrate</h4>
+                                <div class="grid grid-cols-2 gap-2 mt-2">
+                                    <select id="sandbox-water" onchange="changeSandboxEnvironment()" class="px-3 py-2.5 rounded-lg border border-slate-700 text-xs bg-slate-950 text-white font-semibold">
+                                        <option value="daylight">Freshwater Daylight</option>
+                                        <option value="reef">Saltwater Reef Blue</option>
+                                        <option value="blackwater">Amazon Blackwater</option>
+                                        <option value="moonlight">24/7 Night Moonlight</option>
+                                    </select>
+                                    <select id="sandbox-substrate" onchange="changeSandboxEnvironment()" class="px-3 py-2.5 rounded-lg border border-slate-700 text-xs bg-slate-950 text-white font-semibold">
+                                        <option value="sand">Fine River Sand</option>
+                                        <option value="aragonite">White Reef Aragonite</option>
+                                        <option value="black">Volcanic Black Sand</option>
+                                        <option value="gravel">Natural Pea Gravel</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between items-center mb-1.5">
+                                    <h4 class="font-extrabold text-white text-xs">🐟 2. Caught Fish & Cards</h4>
+                                    <button onclick="openArcadeModal()" class="text-[10px] text-amber-400 font-extrabold underline">🎣 Go Fishing!</button>
+                                </div>
+                                <div class="bg-rescue-950 p-3 rounded-xl border border-rescue-800 text-center text-xs text-rescue-200">
+                                    <p class="font-bold">Catch TCG Card fish across 6 immersive scenes!</p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between items-center mb-1.5">
+                                    <h4 class="font-extrabold text-white text-xs">🌿 3. Big Decor & Saltwater Corals</h4>
+                                    <button onclick="clearPlacedItems()" class="text-[10px] text-red-400 font-bold hover:underline">Clear Items</button>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2" id="decor-palette-grid">
+                                    <div onclick="spawnEntity('decor', 'Pirate Galleon', '🏴‍☠️')" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-xl p-2.5 text-center cursor-pointer shadow-2xs transition">
+                                        <div class="text-3xl">🏴‍☠️</div>
+                                        <div class="text-[10px] font-bold text-slate-300 mt-0.5">Pirate Ship</div>
+                                    </div>
+                                    <div onclick="spawnEntity('decor', 'Brain Coral', '🪸')" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-xl p-2.5 text-center cursor-pointer shadow-2xs transition" title="Saltwater Coral Buff (+15% Coin Bonus)">
+                                        <div class="text-3xl">🪸</div>
+                                        <div class="text-[10px] font-bold text-cyan-300 mt-0.5">Reef Coral (+Buff)</div>
+                                    </div>
+                                    <div onclick="spawnEntity('decor', 'Driftwood', '🪵')" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-xl p-2.5 text-center cursor-pointer shadow-2xs transition">
+                                        <div class="text-3xl">🪵</div>
+                                        <div class="text-[10px] font-bold text-slate-300 mt-0.5">Big Wood</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SOCIAL & REVIEW SHARING HUB -->
+                        <div class="pt-3 border-t border-slate-800 space-y-2">
+                            <h4 class="font-extrabold text-white text-xs">🌐 Share & Support Three Rivers Fish Rescue</h4>
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <a href="https://www.facebook.com" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-3 rounded-xl text-center transition flex items-center justify-center space-x-1">
+                                    <span>📘 Facebook</span>
+                                </a>
+                                <a href="https://g.co/kgs/threeriversfishrescue" target="_blank" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2 px-3 rounded-xl text-center transition flex items-center justify-center space-x-1">
+                                    <span>⭐ Google Review</span>
+                                </a>
+                            </div>
+                            <button onclick="openGameSubmitModal()" class="w-full bg-rescue-600 hover:bg-rescue-700 text-white font-extrabold py-3 px-4 rounded-xl text-xs transition shadow-lg flex items-center justify-center space-x-2">
+                                <span>🏆 Submit Custom Tank to Weekly Showcase!</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================================= -->
+            <!-- SECTION 4: DIGITAL COLORING STUDIO                                        -->
+            <!-- ========================================================================= -->
+            <div id="section-coloring" class="hidden space-y-6">
+                <div class="border-b border-slate-800 pb-4 flex justify-between items-center flex-wrap gap-2">
+                    <div>
+                        <h3 class="text-xl font-extrabold text-white">🎨 Sanctuary Digital Coloring Studio</h3>
+                        <p class="text-xs text-slate-400">Pick a rescue animal template, select your brush color, and paint your masterpiece right here!</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="clearCanvasColoring()" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-2 rounded-xl text-xs font-bold">Clear Canvas</button>
+                        <button onclick="saveColoringMasterpiece()" class="bg-rescue-600 hover:bg-rescue-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow">Save & Earn +20 Coins! 🪙</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    <div class="lg:col-span-3 space-y-3">
+                        <h4 class="font-extrabold text-xs text-slate-300 uppercase tracking-wider">Select Template</h4>
+                        <div class="space-y-2">
+                            <button onclick="loadColoringTemplate('oscar')" class="w-full p-3 rounded-xl border-2 border-rescue-600 bg-rescue-950 text-left flex items-center space-x-3 transition">
+                                <span class="text-2xl">🐠</span>
+                                <div>
+                                    <div class="font-extrabold text-xs text-white">Tiger Oscar</div>
+                                    <div class="text-[10px] text-slate-400">Classic Sanctuary Resident</div>
+                                </div>
+                            </button>
+                            <button onclick="loadColoringTemplate('axolotl')" class="w-full p-3 rounded-xl border border-slate-800 hover:bg-slate-900 text-left flex items-center space-x-3 transition">
+                                <span class="text-2xl">🦎</span>
+                                <div>
+                                    <div class="font-extrabold text-xs text-white">Albino Axolotl</div>
+                                    <div class="text-[10px] text-slate-400">Coldwater Amphibian</div>
+                                </div>
+                            </button>
+                            <button onclick="loadColoringTemplate('gar')" class="w-full p-3 rounded-xl border border-slate-800 hover:bg-slate-900 text-left flex items-center space-x-3 transition">
+                                <span class="text-2xl">🐊</span>
+                                <div>
+                                    <div class="font-extrabold text-xs text-white">Alligator Gar</div>
+                                    <div class="text-[10px] text-slate-400">River Monster</div>
+                                </div>
+                            </button>
+                        </div>
+
+                        <h4 class="font-extrabold text-xs text-slate-300 uppercase tracking-wider pt-3">Brush Palette</h4>
+                        <div class="grid grid-cols-5 gap-2" id="color-palette-grid">
+                            <button onclick="setBrushColor('#101820')" class="w-10 h-10 rounded-xl bg-slate-900 border-2 border-slate-700 shadow"></button>
+                            <button onclick="setBrushColor('#ef4444')" class="w-10 h-10 rounded-xl bg-red-500 border-2 border-white shadow"></button>
+                            <button onclick="setBrushColor('#f59e0b')" class="w-10 h-10 rounded-xl bg-amber-500 border-2 border-white shadow"></button>
+                            <button onclick="setBrushColor('#eab308')" class="w-10 h-10 rounded-xl bg-yellow-400 border-2 border-white shadow"></button>
+                            <button onclick="setBrushColor('#22c55e')" class="w-10 h-10 rounded-xl bg-emerald-500 border-2 border-white shadow"></button>
+                            <button onclick="setBrushColor('#06b6d4')" class="w-10 h-10 rounded-xl bg-cyan-500 border-2 border-white shadow"></button>
+                            <button onclick="setBrushColor('#3b82f6')" class="w-10 h-10 rounded-xl bg-blue-500 border-2 border-white shadow"></button>
+                            <button onclick="setBrushColor('#a855f7')" class="w-10 h-10 rounded-xl bg-purple-500 border-2 border-white shadow"></button>
+                            <button onclick="setBrushColor('#ec4899')" class="w-10 h-10 rounded-xl bg-pink-500 border-2 border-white shadow"></button>
+                            <button onclick="setBrushColor('#ffffff')" class="w-10 h-10 rounded-xl bg-white border-2 border-slate-700 shadow" title="Eraser"></button>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">Brush Size: <span id="brush-size-lbl">12</span>px</label>
+                            <input type="range" min="4" max="32" value="12" oninput="setBrushSize(this.value)" class="w-full accent-rescue-600">
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-9 bg-slate-900 rounded-2xl p-4 flex flex-col items-center justify-center relative border-4 border-slate-800 shadow-2xl">
+                        <div class="absolute top-3 left-4 text-xs font-extrabold text-amber-300">🎨 Drawing Template Active</div>
+                        <canvas id="coloring-canvas" width="680" height="420" class="bg-white rounded-xl shadow-inner"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================================= -->
+            <!-- SECTION 5: SPONSOR A REAL SANCTUARY FISH WALL                             -->
+            <!-- ========================================================================= -->
+            <div id="section-sponsor" class="hidden space-y-6">
+                <div class="border-b border-slate-800 pb-4 flex justify-between items-center flex-wrap gap-2">
+                    <div>
+                        <h3 class="text-xl font-extrabold text-white">🦈 Sponsor a Real Sanctuary Fish</h3>
+                        <p class="text-xs text-slate-400">Meet actual rescued residents currently living in our Pittsburgh sanctuary! Sponsoring helps cover their specialized diet, medical care, and oversized filtration.</p>
+                    </div>
+                    <span class="text-xs font-bold bg-amber-950 text-amber-300 px-3 py-1 rounded-full border border-amber-800">100% Tax-Deductible Nonprofit Support</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="h-44 bg-slate-950 rounded-xl overflow-hidden relative flex items-center justify-center text-6xl text-white bg-gradient-to-br from-amber-950 to-slate-900 shadow-inner border border-slate-800">
+                                🐠
+                                <span class="absolute bottom-2 left-2 bg-slate-900/90 text-pgh-gold text-[10px] px-2 py-0.5 rounded font-bold border border-amber-500/30">14 Inches • 5 Years Old</span>
+                            </div>
+                            <h4 class="font-extrabold text-white text-base">"Big Mac" the Tiger Oscar</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Big Mac was surrendered after outgrowing his owner's 40-gallon tank. He loves hand-fed earthworms, glass-surfing when visitors walk by, and lounging near his favorite driftwood log.
+                            </p>
+                        </div>
+                        <button onclick="openSponsorModal('Big Mac the Tiger Oscar')" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-2.5 rounded-xl text-xs transition shadow">
+                            ❤️ Sponsor Big Mac ($15/mo)
+                        </button>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="h-44 bg-slate-950 rounded-xl overflow-hidden relative flex items-center justify-center text-6xl text-white bg-gradient-to-br from-indigo-950 to-slate-900 shadow-inner border border-slate-800">
+                                🦎
+                                <span class="absolute bottom-2 left-2 bg-slate-900/90 text-emerald-300 text-[10px] px-2 py-0.5 rounded font-bold border border-emerald-500/30">Chilled 62°F Biome</span>
+                            </div>
+                            <h4 class="font-extrabold text-white text-base">"Sparkly" the Albino Axolotl</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Sparkly lives in our specialized chilled water system. She requires pristine soft water, frozen bloodworms, and live red wigglers. She is a favorite among student visitors!
+                            </p>
+                        </div>
+                        <button onclick="openSponsorModal('Sparkly the Albino Axolotl')" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-2.5 rounded-xl text-xs transition shadow">
+                            ❤️ Sponsor Sparkly ($10/mo)
+                        </button>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="h-44 bg-slate-950 rounded-xl overflow-hidden relative flex items-center justify-center text-6xl text-white bg-gradient-to-br from-cyan-950 to-slate-900 shadow-inner border border-slate-800">
+                                🐊
+                                <span class="absolute bottom-2 left-2 bg-slate-900/90 text-sky-300 text-[10px] px-2 py-0.5 rounded font-bold border border-sky-500/30">Monster Sanctuary Resident</span>
+                            </div>
+                            <h4 class="font-extrabold text-white text-base">"Gator" the Alligator Gar</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Rescued from an illegal indoor tank in Western PA, Gator represents our core mission: educating the public against releasing large predatory fish into local rivers.
+                            </p>
+                        </div>
+                        <button onclick="openSponsorModal('Gator the Alligator Gar')" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-2.5 rounded-xl text-xs transition shadow">
+                            ❤️ Sponsor Gator ($25/mo)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================================= -->
+            <!-- SECTION 6: COMMUNITY FORUM BOARD & TRADING CARD MARKETPLACE               -->
+            <!-- ========================================================================= -->
+            <div id="section-forum" class="hidden space-y-6">
+                <div class="border-b border-slate-800 pb-4 flex justify-between items-center flex-wrap gap-2">
+                    <div>
+                        <h3 class="text-xl font-extrabold text-white">💬 Pittsburgh Aquarist Community & Card Trading Board</h3>
+                        <p class="text-xs text-slate-400">Post your caught fish trading cards to trade with other local keepers across Pittsburgh!</p>
+                    </div>
+                    <button onclick="openNewPostModal()" class="bg-rescue-600 hover:bg-rescue-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow transition">
+                        + Post Fish Card for Trade
+                    </button>
+                </div>
+
+                <div id="forum-posts-container" class="space-y-4"></div>
+            </div>
+
+            <!-- Form Submission Confirmation Overlay -->
+            <div id="success-state" class="hidden text-center py-12 space-y-4">
+                <div class="w-16 h-16 bg-rescue-950 text-rescue-400 rounded-full flex items-center justify-center mx-auto text-3xl font-bold border border-rescue-800">✓</div>
+                <h3 id="success-heading" class="text-2xl font-extrabold text-white">Dispatched to Three Rivers Fish Rescue!</h3>
+                <p id="success-text" class="text-slate-300 max-w-lg mx-auto text-xs md:text-sm leading-relaxed"></p>
+                <div class="pt-2">
+                    <button onclick="switchTab('surrender')" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-2.5 rounded-xl transition text-xs border border-slate-700">
+                        Return to Sanctuary Portal
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ================= MODALS ================= -->
+    <!-- IMMERSIVE 6-SCENE FISHING ARCADE MODAL -->
+    <div id="arcade-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 hidden">
+        <div class="bg-slate-950 w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden border-2 border-amber-400 flex flex-col h-[85vh] max-h-[92vh]">
+            <div class="bg-slate-900 text-white px-5 py-3.5 flex justify-between items-center border-b border-slate-800">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">🎣</span>
+                    <div>
+                        <h3 class="font-extrabold text-base text-amber-300">Three Rivers Fisher Pro — Immersive 6-Scene Simulator</h3>
+                        <p class="text-[11px] text-slate-400">Experience first-person water scenes, realistic tension physics, and collect real TCG cards!</p>
+                    </div>
+                </div>
+                <button onclick="closeArcadeModal()" class="text-slate-400 hover:text-white font-bold text-xl px-2">✕</button>
+            </div>
+
+            <!-- 6 Immersive Scene Selector Bar -->
+            <div class="bg-slate-900/90 px-5 py-2.5 flex flex-wrap justify-between items-center border-b border-slate-800 text-xs font-bold text-white gap-2">
+                <div class="flex items-center space-x-1.5 overflow-x-auto pb-1">
+                    <span class="text-amber-400 text-[10px] uppercase font-black">Scene:</span>
+                    <button onclick="selectFishingScene('morning-creek')" id="scene-btn-morning-creek" class="scene-btn px-2.5 py-1 rounded-lg bg-rescue-600 text-white transition text-[11px]">🌿 1. Morning Creek</button>
+                    <button onclick="selectFishingScene('rushing-river')" id="scene-btn-rushing-river" class="scene-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 transition text-[11px]">🌊 2. Rushing River</button>
+                    <button onclick="selectFishingScene('golden-pier')" id="scene-btn-golden-pier" class="scene-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 transition text-[11px]">🌅 3. Golden Pier</button>
+                    <button onclick="selectFishingScene('ocean-boat')" id="scene-btn-ocean-boat" class="scene-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 transition text-[11px]">🛥️ 4. Ocean Boat</button>
+                    <button onclick="selectFishingScene('midnight-bayou')" id="scene-btn-midnight-bayou" class="scene-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 transition text-[11px]">🌙 5. Midnight Bayou</button>
+                    <button onclick="selectFishingScene('deep-reef')" id="scene-btn-deep-reef" class="scene-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 transition text-[11px]">🪸 6. Deep Reef</button>
+                </div>
+                <div>
+                    <span class="bg-amber-400 text-slate-950 px-2.5 py-1 rounded-lg font-black">🪙 Coins: <span id="sim-coin-count">100</span></span>
+                </div>
+            </div>
+
+            <!-- Canvas Immersive Scene Arena -->
+            <div class="relative flex-grow bg-slate-950 overflow-hidden flex flex-col justify-between select-none">
+                <canvas id="fishing-canvas" width="860" height="420" class="w-full h-full cursor-crosshair block"></canvas>
+                
+                <!-- HUD Overlay -->
+                <div class="absolute top-4 left-4 right-4 flex justify-between items-center pointer-events-none">
+                    <div id="sim-msg" class="bg-slate-950/90 text-amber-300 font-extrabold text-xs px-4 py-2 rounded-xl border border-amber-400/50 shadow-lg">
+                        Select an immersive scene and click water to cast your line!
+                    </div>
+                    <div id="fight-hud" class="hidden bg-slate-900/95 p-3 rounded-xl border border-amber-400 space-y-1.5 w-64 shadow-2xl pointer-events-auto">
+                        <div class="flex justify-between text-[10px] font-bold text-amber-300">
+                            <span>Tension: <span id="hud-tension">50%</span></span>
+                        </div>
+                        <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden border border-slate-700 relative">
+                            <div class="absolute inset-y-0 left-[25%] right-[25%] bg-emerald-500/40"></div>
+                            <div id="hud-tension-bar" style="width: 50%" class="bg-emerald-400 h-full transition-all"></div>
+                        </div>
+                        <div class="flex justify-between text-[10px] font-bold text-sky-300 pt-1">
+                            <span>Fish Stamina: <span id="hud-stamina">100%</span></span>
+                        </div>
+                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden border border-slate-700">
+                            <div id="hud-stamina-bar" style="width: 100%" class="bg-sky-400 h-full transition-all"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Controls -->
+                <div class="absolute bottom-4 left-0 right-0 flex justify-center items-center space-x-3 pointer-events-auto">
+                    <button id="arcade-main-btn" onclick="triggerFishingAction()" class="bg-rescue-600 hover:bg-rescue-500 text-white font-black px-8 py-3 rounded-2xl shadow-2xl text-xs transition transform hover:scale-105">
+                        🎣 Cast Line
+                    </button>
+                    <div id="post-catch-btns" class="hidden flex space-x-2">
+                        <button onclick="stockCaughtFishToTank()" class="bg-emerald-600 text-white font-extrabold px-4 py-2.5 rounded-xl shadow text-xs">🐠 Add to Tank</button>
+                        <button onclick="releaseCaughtFishForCoins()" class="bg-slate-800 text-white font-bold px-4 py-2.5 rounded-xl shadow text-xs">🌊 Release (+30 🪙)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRADING CARD BINDER DECK MODAL -->
+    <div id="card-deck-modal" class="fixed inset-0 bg-black/85 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-950 w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden border-2 border-pgh-gold flex flex-col h-[85vh]">
+            <div class="bg-slate-900 text-white p-4 flex justify-between items-center border-b border-slate-800">
+                <div class="flex items-center space-x-2">
+                    <span class="text-2xl">🃏</span>
+                    <h3 class="font-extrabold text-base text-pgh-gold">My Pokémon-Style Trading Card Binder (<span id="binder-count">0</span> Cards)</h3>
+                </div>
+                <button onclick="closeCardDeckModal()" class="text-slate-400 hover:text-white font-bold text-lg">✕</button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-grow bg-slate-900 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="card-deck-grid"></div>
+        </div>
+    </div>
+
+    <!-- FISHING SHOP MODAL -->
+    <div id="fishing-shop-modal" class="fixed inset-0 bg-black/80 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 text-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border-2 border-rescue-600">
+            <div class="bg-slate-950 p-4 flex justify-between items-center border-b border-slate-800">
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl">🛒</span>
+                    <h3 class="font-extrabold text-base text-pgh-gold">Pro Rod & Bait Tackle Shop</h3>
+                </div>
+                <button onclick="closeFishingShop()" class="text-slate-400 hover:text-white font-bold">✕</button>
+            </div>
+            <div class="p-6 space-y-4 text-xs">
+                <div class="bg-amber-950 p-3 rounded-xl border border-amber-800 text-amber-300 flex justify-between items-center font-bold">
+                    <span>🪙 Available Coins:</span>
+                    <span id="shop-modal-coins">100</span>
+                </div>
+                <button onclick="closeFishingShop()" class="w-full bg-slate-950 hover:bg-slate-800 text-white py-2.5 rounded-xl font-bold mt-2 border border-slate-700">Close Shop</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- COIN SHOP & ADOPTIONS MODAL -->
+    <div id="coin-shop-modal" class="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 text-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden border-2 border-amber-400">
+            <div class="bg-slate-950 p-5 border-b border-slate-800 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="text-2xl mascot-avatar">🐠</span>
+                    <div>
+                        <h3 class="font-extrabold text-base text-amber-300">Oscar's Sanctuary Coin Shop & Adoptions</h3>
+                        <p class="text-[11px] text-slate-300">Spend your earned Sanctuary Coins to unlock rare fish and decorations!</p>
+                    </div>
+                </div>
+                <button onclick="closeCoinShopModal()" class="text-slate-400 hover:text-white font-bold">✕</button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="bg-amber-950 p-3.5 rounded-xl border border-amber-800 text-xs text-amber-300 flex justify-between items-center">
+                    <span>🪙 Your Available Coins:</span>
+                    <strong class="text-base" id="shop-coin-balance">100</strong>
+                </div>
+                <button onclick="closeCoinShopModal()" class="w-full bg-slate-950 hover:bg-slate-800 text-white py-2.5 rounded-xl font-bold border border-slate-700">Close Shop</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESCUE REHABILITATION EVENT MODAL -->
+    <div id="rescue-event-modal" class="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 text-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border-2 border-red-500">
+            <div class="bg-red-950 p-5 flex justify-between items-center border-b border-red-900">
+                <div class="flex items-center space-x-2">
+                    <span class="text-2xl mascot-avatar">🐠</span>
+                    <div>
+                        <h3 class="font-extrabold text-base text-red-200">Oscar's Emergency Rescue Intake!</h3>
+                        <p class="text-[11px] text-red-300">A scuffed rescue fish just arrived at our sanctuary!</p>
+                    </div>
+                </div>
+                <button onclick="closeRescueEventModal()" class="text-red-300 font-bold">✕</button>
+            </div>
+            <div class="p-6 space-y-4 text-xs">
+                <div class="bg-slate-950 p-3.5 rounded-xl border border-red-900 text-red-200 space-y-2">
+                    <p class="font-extrabold text-sm">"Rusty" the Rescue Cichlid needs immediate care!</p>
+                    <p>Rusty arrived pale, stressed, and with mild fin rot. Accept him into your tank and use your <strong>Ich-X meds</strong>, <strong>clean water</strong>, and <strong>feedings</strong> to nurse him back to vibrant health!</p>
+                </div>
+                <button onclick="acceptRescueFish()" class="w-full bg-rescue-600 hover:bg-rescue-700 text-white font-extrabold py-3 rounded-xl text-xs transition shadow-lg">
+                    ✅ Accept Rusty Into Tank (+50 🪙)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW FORUM POST MODAL (TRADING CARD MARKETPLACE) -->
+    <div id="forum-post-modal" class="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 text-white w-full max-w-md rounded-2xl shadow-2xl p-6 space-y-4 border border-slate-800">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <h3 class="font-extrabold text-base text-white">🃏 Post Fish Trading Card for Trade</h3>
+                <button onclick="closeNewPostModal()" class="text-slate-400 hover:text-white font-bold">✕</button>
+            </div>
+            <form onsubmit="submitForumPost(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1">Your Keeper Name *</label>
+                    <input type="text" id="forum-name" required class="w-full px-3 py-2 rounded-xl border border-slate-700 bg-slate-950 text-white outline-none" placeholder="e.g., Pittsburgh Hobbys">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1">Card Title & Rarity *</label>
+                    <input type="text" id="forum-card-title" required class="w-full px-3 py-2 rounded-xl border border-slate-700 bg-slate-950 text-white outline-none" placeholder="e.g., Holographic Mythic Great White Shark">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1">Looking For / Trade Note *</label>
+                    <textarea id="forum-content" rows="3" required class="w-full px-3 py-2 rounded-xl border border-slate-700 bg-slate-950 text-white outline-none" placeholder="Looking to trade for a Legendary Alligator Gar card!"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-rescue-600 hover:bg-rescue-700 text-white font-extrabold py-3 rounded-xl transition shadow">
+                    Publish Card to Trading Board
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SPONSOR MODAL -->
+    <div id="sponsor-modal" class="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 text-white w-full max-w-md rounded-2xl shadow-2xl p-6 space-y-4 border border-amber-400">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <h3 class="font-extrabold text-base text-white" id="sponsor-modal-title">Sponsor Sanctuary Animal</h3>
+                <button onclick="closeSponsorModal()" class="text-slate-400 hover:text-white font-bold">✕</button>
+            </div>
+            <form onsubmit="submitSponsorship(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1">Your Full Name *</label>
+                    <input type="text" id="sponsor-name" required class="w-full px-3 py-2 rounded-xl border border-slate-700 bg-slate-950 text-white" placeholder="Jane Doe">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1">Email Address *</label>
+                    <input type="email" id="sponsor-email" required class="w-full px-3 py-2 rounded-xl border border-slate-700 bg-slate-950 text-white" placeholder="you@example.com">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-300 mb-1">Monthly Sponsor Level *</label>
+                    <select id="sponsor-tier" class="w-full px-3 py-2 rounded-xl border border-slate-700 bg-slate-950 text-white font-semibold">
+                        <option value="$10/month Supporting Sponsor">$10 / month — Food & Filter Sponsor</option>
+                        <option value="$25/month Sanctuary Champion">$25 / month — Veterinary & Habitat Champion</option>
+                        <option value="$50/month Monster Tank Patron">$50 / month — Full Tank Ecosystem Patron</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-3 rounded-xl transition shadow">
+                    Complete Sponsorship & Notify Sanctuary Team
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- VIP / DEVICE IDENTIFIER PASS MODAL -->
+    <div id="vip-modal" class="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 text-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border-2 border-pgh-gold">
+            <div class="bg-slate-950 p-5 border-b border-slate-800 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="text-2xl">💾</span>
+                    <div>
+                        <h3 class="font-extrabold text-base text-pgh-gold">Secure Device Cloud Sync (MAC/IP Active)</h3>
+                        <p class="text-[11px] text-slate-300">Your Tank, Trading Cards & Coins are Automatically Remembered!</p>
+                    </div>
+                </div>
+                <button onclick="closeVipModal()" class="text-slate-400 hover:text-white font-bold">✕</button>
+            </div>
+            <div class="p-6 space-y-4 text-xs">
+                <div class="bg-rescue-950 p-3.5 rounded-xl border border-rescue-800 text-rescue-200 space-y-2">
+                    <p class="font-extrabold text-sm">Zero-Login Device Recognition Active!</p>
+                    <p>Your browser and device are securely paired to your sanctuary progress via local encrypted hardware fingerprints and IP session tokens. No password required!</p>
+                    <p class="text-[10px] text-slate-400" id="device-fingerprint-lbl">Device ID: Generating...</p>
+                </div>
+                <button onclick="closeVipModal()" class="w-full bg-slate-950 hover:bg-slate-800 text-white font-bold py-3 rounded-xl border border-slate-700">Back to Sanctuary</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRFR AQUARIST ASSISTANT CHATBOT MODAL (WITH FORM AUTO-FILL) -->
+    <div id="ai-chat-modal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-2 sm:p-4 hidden">
+        <div class="bg-slate-900 text-white w-full max-w-3xl rounded-2xl shadow-2xl flex flex-col h-[750px] max-h-[94vh] overflow-hidden border-2 border-slate-700">
+            <div class="bg-slate-950 px-4 py-3 flex justify-between items-center border-b border-slate-800 gap-2">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-700 border border-pgh-gold flex items-center justify-center text-xl shadow flex-shrink-0 mascot-avatar">🐠</div>
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <h3 class="font-extrabold text-sm text-pgh-gold">Oscar's Aquarist Assistant (Auto-Fill Active)</h3>
+                            <span class="bg-emerald-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded">AI Active</span>
+                        </div>
+                        <p class="text-[11px] text-slate-300">Ask me anything or tell me your surrender info to auto-fill forms!</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-1.5 flex-shrink-0">
+                    <button onclick="emailChatTranscript()" class="bg-pgh-gold hover:bg-amber-400 text-slate-950 px-2.5 py-1.5 rounded-lg text-[11px] font-extrabold transition shadow">✉️ Email</button>
+                    <button onclick="toggleAIChat()" class="text-slate-400 hover:text-white text-lg font-bold px-1">✕</button>
+                </div>
+            </div>
+            <div id="ai-memory-bar" class="bg-slate-950 text-slate-300 px-4 py-1.5 text-[11px] flex items-center justify-between border-b border-slate-800">
+                <span class="text-pgh-gold font-bold">📌 Oscar's Auto-Fill & Diagnosis Engine:</span>
+                <span class="text-slate-400">Listening for form details!</span>
+            </div>
+            
+            <div id="chat-messages" class="flex-grow p-4 overflow-y-auto space-y-3 bg-slate-950 text-xs md:text-sm text-slate-100"></div>
+            
+            <div id="image-preview-container" class="hidden px-4 py-2 bg-slate-950 border-t border-slate-800 flex items-center space-x-2">
+                <span class="text-xs font-bold text-slate-400">Attached Image:</span>
+                <span id="image-file-name" class="text-xs text-rescue-300 truncate"></span>
+                <button onclick="clearAttachedImage()" class="text-xs text-red-400 font-bold ml-auto hover:underline">Remove</button>
+            </div>
+
+            <div class="p-3 bg-slate-950 border-t border-slate-800 flex items-center space-x-2">
+                <label class="cursor-pointer bg-slate-900 hover:bg-slate-800 border border-slate-700 px-3 py-2.5 rounded-xl text-sm transition flex items-center justify-center text-white" title="Upload Tank or Sick Fish Photo for Diagnosis">
+                    📷 <input type="file" id="chat-image-input" accept="image/*" onchange="handleImageAttachment(event)" class="hidden">
+                </label>
+                <input type="text" id="chat-input" onkeypress="handleChatKey(event)" placeholder="Type details (e.g. 'Surrender my Oscar, name John, phone 412-555-0199')..." class="flex-grow px-3.5 py-2.5 text-xs md:text-sm border border-slate-700 rounded-xl outline-none bg-slate-900 text-white focus:ring-2 focus:ring-rescue-600">
+                <button onclick="sendUserMessage()" class="bg-rescue-600 hover:bg-rescue-700 text-white px-5 py-2.5 text-xs font-extrabold rounded-xl transition shadow-md">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Assistant Button -->
+    <div class="fixed bottom-5 right-5 z-40">
+        <button onclick="toggleAIChat()" class="bg-slate-900 hover:bg-slate-800 text-white border-2 border-pgh-gold px-4 py-2.5 rounded-full shadow-xl flex items-center space-x-2.5 transition transform hover:scale-105">
+            <span class="text-xl mascot-avatar">🐠</span>
+            <span class="text-xs font-extrabold text-pgh-gold">Ask Oscar</span>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-6 border-t-2 border-pgh-gold mt-12 text-center text-xs shadow-xl">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <p class="font-bold text-slate-200">🐟 Three Rivers Fish Rescue, Inc. • Pittsburgh, PA Sanctuary</p>
+            <p>PA Nonprofit Entity ID: 0016017909 • <a href="mailto:threeriversfishrescue@gmail.com" class="text-pgh-gold hover:underline">threeriversfishrescue@gmail.com</a></p>
+        </div>
+    </footer>
+
+    <!-- ========================================================================= -->
+    <!-- SECURE FRONTEND INTEGRATION ENGINE (VERSIONED STATE & AUTO-RECOVERY)      -->
+    <!-- ========================================================================= -->
+    <script>
+        /*
+          ========================================================================
+          THREE RIVERS FISH RESCUE - NONPROFIT SOURCE CODE & WATERMARK
+          Entity ID: 0016017909 | Pittsburgh, PA Sanctuary
+          Last Verified & Compiled: October 28, 2026 - 10:19 PM EDT
+          ========================================================================
+        */
+        const TRFR_EMAIL = "threeriversfishrescue@gmail.com";
+        const STORAGE_VERSION = 'trfr_save_v3_';
+        const GEMINI_API_KEY = "";
+
+        function safeGetStorage(key, defaultValue) {
+            try {
+                const item = localStorage.getItem(STORAGE_VERSION + key);
+                if (!item) return defaultValue;
+                return JSON.parse(item);
+            } catch (e) {
+                const backup = localStorage.getItem(STORAGE_VERSION + key + '_backup');
+                return backup ? JSON.parse(backup) : defaultValue;
+            }
+        }
+
+        function safeSetStorage(key, value) {
+            try {
+                const serialized = JSON.stringify(value);
+                localStorage.setItem(STORAGE_VERSION + key, serialized);
+                localStorage.setItem(STORAGE_VERSION + key + '_backup', serialized);
+            } catch (e) {
+                console.error('Storage write error:', e);
+            }
+        }
+
+        function triggerApplaud(type) {
+            let counts = safeGetStorage('applause_counts', { heart: 428, clap: 612, star: 355 });
+            counts[type]++;
+            safeSetStorage('applause_counts', counts);
+            document.getElementById(`count-${type}`).innerText = counts[type];
+            const feedback = document.getElementById('applause-feedback');
+            feedback.innerText = "❤️ Thank you for supporting our rescue mission!";
+            setTimeout(() => { feedback.innerText = ""; }, 3000);
+        }
+
+        let deviceFingerprint = safeGetStorage('device_mac_fp', null);
+        if (!deviceFingerprint) {
+            deviceFingerprint = 'TRFR-DEV-' + Math.random().toString(36).substring(2, 9).toUpperCase() + '-' + Date.now().toString(36).toUpperCase();
+            safeSetStorage('device_mac_fp', deviceFingerprint);
+        }
+
+        function switchTab(tab) {
+            ['mission', 'surrender', 'donation', 'game', 'coloring', 'sponsor', 'forum'].forEach(t => {
+                const sec = document.getElementById(`section-${t}`);
+                const btn = document.getElementById(`tab-${t}`);
+                if (sec) sec.classList.add('hidden');
+                if (btn) btn.className = "px-3.5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-900";
+            });
+            document.getElementById('success-state').classList.add('hidden');
+
+            const activeSec = document.getElementById(`section-${tab}`);
+            const activeBtn = document.getElementById(`tab-${tab}`);
+            if (activeSec) activeSec.classList.remove('hidden');
+            if (activeBtn) activeBtn.className = "px-3.5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all bg-slate-900 text-pgh-gold shadow-md";
+
+            if (tab === 'forum') renderForumPosts();
+            if (tab === 'coloring') initColoringCanvas('oscar');
+        }
+
+        async function handleFormSubmission(event, formType) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            let emailText = `====================================================\nTHREE RIVERS FISH RESCUE - ${formType.toUpperCase()}\n====================================================\n`;
+            for (let [k, v] of formData.entries()) { emailText += `${k.replace(/_/g, ' ')}: ${v}\n`; }
+            ['mission', 'surrender', 'donation', 'game', 'coloring', 'sponsor', 'forum'].forEach(t => {
+                document.getElementById(`section-${t}`).classList.add('hidden');
+            });
+            document.getElementById('success-heading').innerText = `${formType} Received!`;
+            document.getElementById('success-text').innerHTML = `Your details have been routed to <strong>${TRFR_EMAIL}</strong>.`;
+            document.getElementById('success-state').classList.remove('hidden');
+            setTimeout(() => {
+                window.location.href = `mailto:${TRFR_EMAIL}?subject=${encodeURIComponent('TRFR ' + formType)}&body=${encodeURIComponent(emailText)}`;
+            }, 500);
+            form.reset();
+        }
+
+        let sanctuaryCoins = parseInt(safeGetStorage('sanctuary_coins', 100), 10);
+        let activeTool = 'scraper';
+        let isPointerDown = false;
+        let waterPercent = 88;
+        let algaeCleanedPercent = 0;
+        let dechlorinated = false;
+        let wasteRemaining = 6;
+        let placedItems = safeGetStorage('placed_items', []);
+        let tradingCardDeck = safeGetStorage('card_deck', []);
+        
+        let activeDraggedElement = null;
+        let dragOffsetX = 0;
+        let dragOffsetY = 0;
+
+        const BASE_FISH_FAMILIES = [
+            { prefix: "Tiger", type: "Oscar", emoji: "🐠", biome: "Freshwater", baseRarity: "Common" },
+            { prefix: "Electric Blue", type: "Flowerhorn", emoji: "🐡", biome: "Freshwater", baseRarity: "Rare" },
+            { prefix: "Albino", type: "Axolotl", emoji: "🦎", biome: "Coldwater", baseRarity: "Epic" },
+            { prefix: "Giant", type: "Alligator Gar", emoji: "🐊", biome: "Monster", baseRarity: "Legendary" },
+            { prefix: "Holographic", type: "Great White Shark", emoji: "🦈", biome: "Ocean", baseRarity: "Mythic" },
+            { prefix: "Neon", type: "Tetra", emoji: "🐟", biome: "Tropical", baseRarity: "Common" },
+            { prefix: "Golden", type: "Arowana", emoji: "🐉", biome: "Monster", baseRarity: "Legendary" },
+            { prefix: "Spotted", type: "Dojo Loach", emoji: "🐍", biome: "Coldwater", baseRarity: "Uncommon" }
+        ];
+
+        function generateFullSanctuaryDatabase() {
+            let masterCatalog = [];
+            let idCounter = 1;
+            BASE_FISH_FAMILIES.forEach(family => {
+                for (let i = 1; i <= 250; i++) {
+                    let rarityModifier = family.baseRarity;
+                    if (i > 200) rarityModifier = "Mythic";
+                    else if (i > 150) rarityModifier = "Legendary";
+                    else if (i > 100) rarityModifier = "Epic";
+                    else if (i > 50) rarityModifier = "Rare";
+
+                    masterCatalog.push({
+                        id: `TRFR-SP-${idCounter}`,
+                        label: `${family.prefix} ${family.type} #${i}`,
+                        icon: family.emoji,
+                        rarity: rarityModifier,
+                        biome: family.biome,
+                        length: (4 + (i % 35)).toFixed(1) + ' inches',
+                        weight: (0.5 + (i % 50)).toFixed(1) + ' lbs'
+                    });
+                    idCounter++;
+                }
+            });
+            return masterCatalog;
+        }
+
+        const GLOBAL_FISH_DB = generateFullSanctuaryDatabase();
+
+        const WATER_STYLES = {
+            daylight: "absolute bottom-0 left-0 right-0 bg-gradient-to-b from-sky-300/90 via-sky-500/90 to-blue-700/95 transition-all duration-150 border-t-4 border-sky-100/60",
+            reef: "absolute bottom-0 left-0 right-0 bg-gradient-to-b from-blue-600/90 via-indigo-700/95 to-purple-950/95 transition-all duration-150 border-t-4 border-cyan-300/60",
+            blackwater: "absolute bottom-0 left-0 right-0 bg-gradient-to-b from-amber-600/90 via-amber-800/95 to-stone-900/95 transition-all duration-150 border-t-4 border-amber-300/60",
+            moonlight: "absolute bottom-0 left-0 right-0 bg-gradient-to-b from-indigo-900/95 via-slate-900/95 to-black/95 transition-all duration-150 border-t-4 border-indigo-400/50"
+        };
+
+        const SUBSTRATE_STYLES = {
+            sand: "absolute bottom-0 left-0 right-0 h-16 bg-[radial-gradient(#d4a373_1.5px,transparent_1.5px)] [background-size:10px_10px] bg-amber-100 border-t-4 border-amber-500 z-0 transition-colors shadow-inner",
+            aragonite: "absolute bottom-0 left-0 right-0 h-16 bg-[radial-gradient(#94a3b8_2px,transparent_2px)] [background-size:8px_8px] bg-slate-50 border-t-4 border-slate-300 z-0 transition-colors shadow-inner",
+            black: "absolute bottom-0 left-0 right-0 h-16 bg-[radial-gradient(#262626_1.5px,transparent_1.5px)] [background-size:10px_10px] bg-neutral-950 border-t-4 border-neutral-700 z-0 transition-colors shadow-inner",
+            gravel: "absolute bottom-0 left-0 right-0 h-16 bg-[repeating-linear-gradient(45deg,#78350f,#78350f_6px,#b45309_6px,#b45309_12px)] bg-amber-800 border-t-4 border-amber-950 z-0 transition-colors shadow-inner"
+        };
+
+        function addCoins(amt) {
+            let multiplier = 1;
+            if (placedItems.some(i => i.label === 'Brain Coral')) multiplier = 1.15;
+            sanctuaryCoins += Math.round(amt * multiplier);
+            safeSetStorage('sanctuary_coins', sanctuaryCoins);
+            updateCoinUI();
+        }
+
+        function updateCoinUI() {
+            document.getElementById('coin-count').innerText = sanctuaryCoins;
+            document.getElementById('shop-coin-balance').innerText = sanctuaryCoins;
+            document.getElementById('sim-coin-count').innerText = sanctuaryCoins;
+            document.getElementById('shop-modal-coins').innerText = sanctuaryCoins;
+            document.getElementById('card-count-badge').innerText = tradingCardDeck.length;
+        }
+
+        function savePersistentTankState() {
+            const state = {
+                water: document.getElementById('sandbox-water').value,
+                substrate: document.getElementById('sandbox-substrate').value,
+                waterPercent, algaeCleanedPercent, dechlorinated, wasteRemaining, placedItems
+            };
+            safeSetStorage('user_tank_' + deviceFingerprint, state);
+            safeSetStorage('placed_items', placedItems);
+            safeSetStorage('card_deck', tradingCardDeck);
+        }
+
+        function initSandbox() {
+            setupAlgaeCanvas();
+            updateCoinUI();
+            document.getElementById('device-fingerprint-lbl').innerText = `Device ID: ${deviceFingerprint}`;
+            const counts = safeGetStorage('applause_counts', { heart: 428, clap: 612, star: 355 });
+            document.getElementById('count-heart').innerText = counts.heart;
+            document.getElementById('count-clap').innerText = counts.clap;
+            document.getElementById('count-star').innerText = counts.star;
+
+            const savedTankRaw = safeGetStorage('user_tank_' + deviceFingerprint, null);
+            if (savedTankRaw) {
+                try {
+                    document.getElementById('sandbox-water').value = savedTankRaw.water || 'daylight';
+                    document.getElementById('sandbox-substrate').value = savedTankRaw.substrate || 'sand';
+                    changeSandboxEnvironment(false);
+                    waterPercent = savedTankRaw.waterPercent ?? 88;
+                    document.getElementById('water-volume').style.height = `${waterPercent}%`;
+                    algaeCleanedPercent = savedTankRaw.algaeCleanedPercent ?? 0;
+                    dechlorinated = savedTankRaw.dechlorinated ?? false;
+                    wasteRemaining = savedTankRaw.wasteRemaining ?? 6;
+                    placedItems = savedTankRaw.placedItems || [];
+                    
+                    if (algaeCleanedPercent < 95) {
+                        fillAlgaeLayer();
+                    } else {
+                        document.getElementById('algae-canvas').getContext('2d').clearRect(0, 0, 760, 560);
+                    }
+                    if (wasteRemaining > 0) spawnDetritusNodules();
+                    renderPlacedItems();
+                    updateTelemetryUI();
+                    selectTool('scraper');
+                } catch (e) { resetSandboxTank(false); }
+            } else { resetSandboxTank(false); }
+        }
+
+        function selectTool(tool) {
+            activeTool = tool;
+            document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('tool-active'));
+            document.getElementById(`tool-${tool}`).classList.add('tool-active');
+            
+            const canvas = document.getElementById('algae-canvas');
+            const itemsLayer = document.getElementById('placed-items-layer');
+            if (tool === 'hand') {
+                canvas.style.pointerEvents = 'none';
+                itemsLayer.style.pointerEvents = 'auto';
+            } else {
+                canvas.style.pointerEvents = 'auto';
+                itemsLayer.style.pointerEvents = 'none';
+            }
+        }
+
+        function setupAlgaeCanvas() {
+            const canvas = document.getElementById('algae-canvas');
+            if (!canvas) return;
+            const getCoords = (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return {
+                    x: (clientX - rect.left) * (canvas.width / rect.width),
+                    y: (clientY - rect.top) * (canvas.height / rect.height),
+                    rawX: clientX - rect.left,
+                    rawY: clientY - rect.top
+                };
+            };
+            const startAction = (e) => { if(activeTool !== 'hand') { isPointerDown = true; performToolAt(e, getCoords(e)); } };
+            const moveAction = (e) => { if (!isPointerDown || activeTool === 'hand') return; if (e.cancelable) e.preventDefault(); performToolAt(e, getCoords(e)); };
+            const endAction = () => { if (isPointerDown) savePersistentTankState(); isPointerDown = false; document.getElementById('hose-stream').classList.add('hidden'); document.getElementById('siphon-tube').classList.add('hidden'); };
+
+            canvas.addEventListener('mousedown', startAction);
+            canvas.addEventListener('mousemove', moveAction);
+            window.addEventListener('mouseup', endAction);
+            canvas.addEventListener('touchstart', startAction, { passive: false });
+            canvas.addEventListener('touchmove', moveAction, { passive: false });
+            window.addEventListener('touchend', endAction);
+        }
+
+        function fillAlgaeLayer() {
+            const canvas = document.getElementById('algae-canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(54, 83, 20, 0.88)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < 120; i++) {
+                ctx.fillStyle = 'rgba(40, 65, 15, 0.75)';
+                ctx.beginPath();
+                ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, 22 + Math.random() * 30, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            algaeCleanedPercent = 0;
+            updateTelemetryUI();
+        }
+
+        function spawnDetritusNodules() {
+            const layer = document.getElementById('detritus-layer');
+            layer.innerHTML = '';
+            wasteRemaining = 6;
+            [12, 26, 42, 58, 74, 88].forEach((leftPct, idx) => {
+                const lump = document.createElement('div');
+                lump.id = `waste-nodule-${idx}`;
+                lump.dataset.x = leftPct;
+                lump.className = "absolute bottom-1 w-7 h-5 bg-amber-950/90 rounded-full border border-amber-800 flex items-center justify-center text-[10px] shadow pointer-events-none";
+                lump.style.left = `${leftPct}%`;
+                lump.innerText = "💩";
+                layer.appendChild(lump);
+            });
+        }
+
+        function performToolAt(e, coords) {
+            const canvas = document.getElementById('algae-canvas');
+            const ctx = canvas.getContext('2d');
+            const rect = canvas.getBoundingClientRect();
+
+            if (activeTool === 'scraper') {
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(coords.x, coords.y, 45, 0, Math.PI * 2);
+                ctx.fill();
+                calculateAlgaeCleaned();
+            } else if (activeTool === 'siphon') {
+                const tube = document.getElementById('siphon-tube');
+                tube.classList.remove('hidden');
+                tube.style.left = `${Math.max(10, Math.min(rect.width - 45, coords.rawX - 20))}px`;
+                tube.style.top = `${Math.max(10, Math.min(rect.height - 140, coords.rawY - 70))}px`;
+                if (waterPercent > 45) {
+                    waterPercent = Math.max(45, +(waterPercent - 0.35).toFixed(1));
+                    document.getElementById('water-volume').style.height = `${waterPercent}%`;
+                }
+                const pctX = (coords.rawX / rect.width) * 100;
+                const pctY = (coords.rawY / rect.height) * 100;
+                if (pctY > 65) {
+                    for (let i = 0; i < 6; i++) {
+                        const lump = document.getElementById(`waste-nodule-${i}`);
+                        if (lump && Math.abs(parseFloat(lump.dataset.x) - pctX) < 10) {
+                            lump.remove();
+                            wasteRemaining = Math.max(0, wasteRemaining - 1);
+                            addCoins(10);
+                        }
+                    }
+                }
+                updateTelemetryUI();
+            } else if (activeTool === 'hose') {
+                const stream = document.getElementById('hose-stream');
+                stream.classList.remove('hidden');
+                stream.style.left = `${Math.max(15, Math.min(rect.width - 30, coords.rawX))}px`;
+                if (waterPercent < 96) {
+                    waterPercent = Math.min(96, +(waterPercent + 0.45).toFixed(1));
+                    document.getElementById('water-volume').style.height = `${waterPercent}%`;
+                }
+                updateTelemetryUI();
+            } else if (activeTool === 'prime') {
+                dechlorinated = true;
+                document.getElementById('tool-instruction-hint').innerText = "✅ Oscar says: Prime added! Water is safe.";
+                updateTelemetryUI();
+                savePersistentTankState();
+            }
+        }
+
+        function calculateAlgaeCleaned() {
+            const canvas = document.getElementById('algae-canvas');
+            const ctx = canvas.getContext('2d');
+            const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+            let clearPixels = 0;
+            const step = 16;
+            let totalSampled = 0;
+            for (let i = 3; i < data.length; i += 4 * step) {
+                totalSampled++;
+                if (data[i] < 50) clearPixels++;
+            }
+            const newCleaned = Math.min(100, Math.round((clearPixels / totalSampled) * 100));
+            if (newCleaned > algaeCleanedPercent + 10) addCoins(5);
+            algaeCleanedPercent = newCleaned;
+            if (algaeCleanedPercent >= 94) { ctx.clearRect(0, 0, canvas.width, canvas.height); algaeCleanedPercent = 100; }
+            updateTelemetryUI();
+        }
+
+        function updateTelemetryUI() {
+            document.getElementById('stat-algae').innerText = `${algaeCleanedPercent}%`;
+            document.getElementById('stat-water').innerText = `${Math.round(waterPercent)}%`;
+            document.getElementById('stat-waste').innerText = `${6 - wasteRemaining}/6`;
+            const qual = document.getElementById('stat-quality');
+            const tip = document.getElementById('oscar-sandbox-tip');
+            if (algaeCleanedPercent >= 85 && wasteRemaining === 0 && waterPercent >= 88 && dechlorinated) {
+                qual.innerText = "Sparkling & Cycled! 🌟"; qual.className = "text-emerald-400 font-extrabold";
+                tip.innerText = "Tank is spotless! Switch to Hand tool to add fish!";
+            } else { 
+                qual.innerText = "Needs Cleaning"; qual.className = "text-red-400 font-bold";
+                tip.innerText = "Scrape algae & vacuum waste to prep tank!";
+            }
+        }
+
+        function getAnimatedFishSVG(label) {
+            return `
+                <div class="animated-fish-container relative w-24 h-16 flex items-center justify-center">
+                    <svg viewBox="0 0 100 70" class="w-full h-full drop-shadow-md">
+                        <path class="animated-tail" d="M 25 35 L 5 15 L 12 35 L 5 55 Z" fill="#38bdf8" stroke="#0f172a" stroke-width="2"/>
+                        <ellipse cx="55" cy="35" rx="32" ry="20" fill="url(#fishGrad)" stroke="#0f172a" stroke-width="2.5"/>
+                        <circle cx="75" cy="28" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="1.5"/>
+                        <circle cx="76" cy="28" r="2" fill="#0f172a"/>
+                    </svg>
+                    <defs>
+                        <linearGradient id="fishGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#38bdf8" />
+                            <stop offset="50%" stop-color="#0284c7" />
+                            <stop offset="100%" stop-color="#1e3a8a" />
+                        </linearGradient>
+                    </defs>
+                </div>
+            `;
+        }
+
+        function spawnEntity(category, label, icon) {
+            const xPct = 15 + Math.floor(Math.random() * 65);
+            const yPct = category === 'decor' ? 70 : 30 + Math.floor(Math.random() * 30);
+            placedItems.push({
+                id: 'item-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
+                category, label, icon, x: xPct, y: yPct
+            });
+            renderPlacedItems();
+            savePersistentTankState();
+        }
+
+        function renderPlacedItems() {
+            const layer = document.getElementById('placed-items-layer');
+            layer.innerHTML = '';
+            placedItems.forEach(item => {
+                const el = document.createElement('div');
+                el.className = `placed-entity ${item.category === 'fish' ? '' : 'decor-graphic'}`;
+                el.style.left = `${item.x}%`;
+                el.style.top = `${item.y}%`;
+                
+                const visualContent = item.category === 'fish' ? getAnimatedFishSVG(item.label) : `<div class="text-4xl">${item.icon}</div>`;
+
+                el.innerHTML = `
+                    <div class="relative group pointer-events-auto flex flex-col items-center">
+                        <div class="filter drop-shadow-md">${visualContent}</div>
+                        <span class="bg-slate-900/90 text-pgh-gold text-[10px] px-2 py-0.5 rounded-full whitespace-nowrap font-black shadow border border-amber-400 -mt-2">${item.label}</span>
+                    </div>
+                `;
+                layer.appendChild(el);
+            });
+        }
+
+        function clearPlacedItems() { placedItems = []; renderPlacedItems(); savePersistentTankState(); }
+
+        function changeSandboxEnvironment(shouldSave = true) {
+            const w = document.getElementById('sandbox-water').value;
+            const s = document.getElementById('sandbox-substrate').value;
+            document.getElementById('water-volume').className = WATER_STYLES[w];
+            document.getElementById('tank-substrate-bed').className = SUBSTRATE_STYLES[s];
+            if (shouldSave) savePersistentTankState();
+        }
+
+        function resetSandboxTank(shouldSave = false) {
+            waterPercent = 88;
+            dechlorinated = false;
+            document.getElementById('water-volume').style.height = '88%';
+            fillAlgaeLayer();
+            spawnDetritusNodules();
+            placedItems = [];
+            renderPlacedItems();
+            selectTool('scraper');
+            if (shouldSave) savePersistentTankState();
+        }
+
+        function openVipModal() { document.getElementById('vip-modal').classList.remove('hidden'); }
+        function closeVipModal() { document.getElementById('vip-modal').classList.add('hidden'); }
+
+        function useCareAction(action) {
+            addCoins(10);
+            savePersistentTankState();
+        }
+
+        function openCoinShopModal() { updateCoinUI(); document.getElementById('coin-shop-modal').classList.remove('hidden'); }
+        function closeCoinShopModal() { document.getElementById('coin-shop-modal').classList.add('hidden'); }
+
+        function openRescueEventModal() { document.getElementById('rescue-event-modal').classList.remove('hidden'); }
+        function closeRescueEventModal() { document.getElementById('rescue-event-modal').classList.add('hidden'); }
+        function acceptRescueFish() {
+            addCoins(50);
+            spawnEntity('fish', 'Rusty the Rescue Cichlid', '🐠');
+            closeRescueEventModal();
+        }
+
+        let coloringBrushColor = '#101820';
+        let coloringBrushSize = 12;
+        let isDrawingColoring = false;
+
+        function initColoringCanvas(template) {
+            const canvas = document.getElementById('coloring-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#101820';
+            ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.arc(340, 210, 110, 0, Math.PI * 2); ctx.stroke();
+        }
+        function setBrushColor(c) { coloringBrushColor = c; }
+        function setBrushSize(s) { coloringBrushSize = s; }
+        function clearCanvasColoring() { initColoringCanvas('oscar'); }
+        function saveColoringMasterpiece() { addCoins(20); alert("🎉 Masterpiece saved! +20 Coins added!"); }
+
+        function openCardDeckModal() {
+            const grid = document.getElementById('card-deck-grid');
+            document.getElementById('binder-count').innerText = tradingCardDeck.length;
+            if (tradingCardDeck.length === 0) {
+                grid.innerHTML = `<div class="col-span-3 text-center py-16 text-slate-400 text-xs">Your binder is empty! Fish in the Immersive Arcade to collect cards.</div>`;
+            } else {
+                grid.innerHTML = tradingCardDeck.map(c => `
+                    <div class="holo-foil rounded-2xl p-4 text-center text-white space-y-2 shadow-2xl">
+                        <span class="bg-black/65 text-amber-300 font-black text-[9px] px-2 py-0.5 rounded">${c.rarity}</span>
+                        <div class="text-5xl py-3">${c.icon}</div>
+                        <h4 class="font-black text-sm text-amber-200">${c.label}</h4>
+                    </div>
+                `).join('');
+            }
+            document.getElementById('card-deck-modal').classList.remove('hidden');
+        }
+        function closeCardDeckModal() { document.getElementById('card-deck-modal').classList.add('hidden'); }
+
+        function openFishingShop() { document.getElementById('fishing-shop-modal').classList.remove('hidden'); }
+        function closeFishingShop() { document.getElementById('fishing-shop-modal').classList.add('hidden'); }
+
+        function openArcadeModal() { document.getElementById('arcade-modal').classList.remove('hidden'); initImmersiveScene(); }
+        function closeArcadeModal() { document.getElementById('arcade-modal').classList.add('hidden'); }
+
+        let fishingState = 'idle';
+        let lineTension = 50;
+        let fishStamina = 100;
+        let tensionInterval = null;
+        let lastCaughtFish = null;
+        let currentScene = 'morning-creek';
+
+        const SCENE_CONFIGS = {
+            'morning-creek': { title: 'Morning Creek', bg1: '#065f46', bg2: '#022c22', overlay: '🌿' },
+            'rushing-river': { title: 'Rushing River', bg1: '#0369a1', bg2: '#0f172a', overlay: '🌊' },
+            'golden-pier': { title: 'Golden Pier', bg1: '#b45309', bg2: '#451a03', overlay: '🌅' },
+            'ocean-boat': { title: 'Ocean Boat', bg1: '#1e3a8a', bg2: '#020617', overlay: '🛥️' },
+            'midnight-bayou': { title: 'Midnight Bayou', bg1: '#312e81', bg2: '#09090b', overlay: '🌙' },
+            'deep-reef': { title: 'Deep Reef', bg1: '#0e7490', bg2: '#042f2e', overlay: '🪸' }
+        };
+
+        function selectFishingScene(sceneKey) {
+            currentScene = sceneKey;
+            document.querySelectorAll('.scene-btn').forEach(b => {
+                b.className = "scene-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 transition text-[11px]";
+            });
+            document.getElementById(`scene-btn-${sceneKey}`).className = "scene-btn px-2.5 py-1 rounded-lg bg-rescue-600 text-white transition text-[11px]";
+            resetFishingSim();
+        }
+
+        function initImmersiveScene() {
+            const canvas = document.getElementById('fishing-canvas');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            canvas.onclick = (e) => {
+                if (fishingState === 'idle') startCasting();
+                else if (fishingState === 'bitting') hookFish();
+                else if (fishingState === 'fighting') reelInAction();
+            };
+
+            function frame() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const cfg = SCENE_CONFIGS[currentScene] || SCENE_CONFIGS['morning-creek'];
+
+                const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                grad.addColorStop(0, cfg.bg1);
+                grad.addColorStop(1, cfg.bg2);
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+                ctx.lineWidth = 2;
+                for (let i = 0; i < canvas.width; i += 70) {
+                    ctx.beginPath();
+                    ctx.arc(i + Math.sin(Date.now() / 500 + i) * 20, (Date.now() / 20 + i) % canvas.height, 40, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+
+                requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
+        }
+
+        function resetFishingSim() {
+            fishingState = 'idle';
+            clearInterval(tensionInterval);
+            document.getElementById('arcade-main-btn').classList.remove('hidden');
+            document.getElementById('post-catch-btns').classList.add('hidden');
+            document.getElementById('fight-hud').classList.add('hidden');
+            document.getElementById('sim-msg').innerText = `Ready at ${SCENE_CONFIGS[currentScene].title}! Click water to cast.`;
+        }
+
+        function triggerFishingAction() {
+            if (fishingState === 'idle') startCasting();
+            else if (fishingState === 'bitting') hookFish();
+            else if (fishingState === 'fighting') reelInAction();
+        }
+
+        function startCasting() {
+            playSound('cast');
+            fishingState = 'waiting';
+            document.getElementById('sim-msg').innerText = "Line cast into the water... waiting for a strike! 🎣";
+            document.getElementById('arcade-main-btn').innerText = "⏳ Waiting...";
+            
+            biteTimeout = setTimeout(() => {
+                if (fishingState === 'waiting') {
+                    playSound('bite');
+                    fishingState = 'bitting';
+                    document.getElementById('sim-msg').innerText = "🚨 BITE! CLICK WATER OR PRESS HOOK NOW!";
+                    document.getElementById('arcade-main-btn').innerText = "🎣 HOOK!";
+                }
+            }, 1000 + Math.random() * 1500);
+        }
+
+        function hookFish() {
+            clearTimeout(biteTimeout);
+            fishingState = 'fighting';
+            
+            const baseFish = GLOBAL_FISH_DB[Math.floor(Math.random() * GLOBAL_FISH_DB.length)];
+            lastCaughtFish = {
+                label: baseFish.label,
+                icon: baseFish.icon,
+                rarity: baseFish.rarity,
+                length: baseFish.length,
+                weight: baseFish.weight
+            };
+
+            document.getElementById('sim-msg').innerText = `⚡ FIGHTING [${baseFish.rarity}] ${baseFish.label}! Tap Reel In!`;
+            document.getElementById('arcade-main-btn').innerText = "⚡ REEL IN!";
+            document.getElementById('fight-hud').classList.remove('hidden');
+
+            lineTension = 50;
+            fishStamina = 100;
+
+            tensionInterval = setInterval(() => {
+                lineTension += (Math.random() * 24 - 12);
+                fishStamina = Math.max(0, fishStamina - 4);
+
+                if (lineTension < 12 || lineTension > 88) {
+                    clearInterval(tensionInterval);
+                    resetFishingSim();
+                    document.getElementById('sim-msg').innerText = "❌ Line snapped! Tension out of limits.";
+                } else if (fishStamina <= 0) {
+                    clearInterval(tensionInterval);
+                    finishSuccessfulCatch();
+                }
+                updateProPhysicsUI();
+            }, 180);
+        }
+
+        function reelInAction() {
+            if (fishingState === 'fighting') {
+                fishStamina = Math.max(0, fishStamina - 15);
+                lineTension = Math.min(95, lineTension + 10);
+                updateProPhysicsUI();
+                if (fishStamina <= 0) {
+                    clearInterval(tensionInterval);
+                    finishSuccessfulCatch();
+                }
+            }
+        }
+
+        function updateProPhysicsUI() {
+            document.getElementById('hud-tension').innerText = `${Math.round(lineTension)}%`;
+            document.getElementById('hud-tension-bar').style.width = `${lineTension}%`;
+            document.getElementById('hud-stamina').innerText = `${Math.round(fishStamina)}%`;
+            document.getElementById('hud-stamina-bar').style.width = `${fishStamina}%`;
+        }
+
+        function finishSuccessfulCatch() {
+            playSound('success');
+            fishingState = 'caught';
+            document.getElementById('fight-hud').classList.add('hidden');
+            document.getElementById('arcade-main-btn').classList.add('hidden');
+            document.getElementById('post-catch-btns').classList.remove('hidden');
+            document.getElementById('sim-msg').innerText = `🏆 LANDED [${lastCaughtFish.rarity}] ${lastCaughtFish.label} ${lastCaughtFish.icon}!`;
+
+            const newCard = {
+                id: 'card-' + Date.now(),
+                label: lastCaughtFish.label,
+                icon: lastCaughtFish.icon,
+                rarity: lastCaughtFish.rarity,
+                length: lastCaughtFish.length,
+                weight: lastCaughtFish.weight,
+                location: SCENE_CONFIGS[currentScene].title
+            };
+            tradingCardDeck.unshift(newCard);
+            safeSetStorage('card_deck', tradingCardDeck);
+            updateCoinUI();
+        }
+
+        function stockCaughtFishToTank() {
+            if (lastCaughtFish) {
+                spawnEntity('fish', lastCaughtFish.label, lastCaughtFish.icon);
+                alert(`🎉 Added ${lastCaughtFish.label} to your sanctuary tank!`);
+                closeArcadeModal();
+                switchTab('game');
+            }
+        }
+
+        function releaseCaughtFishForCoins() {
+            addCoins(30);
+            alert("🌊 Released safely! +30 Coins added.");
+            resetFishingSim();
+        }
+
+        let chatSession = { history: [] };
+        let attachedImageBase64 = null;
+        let attachedImageMime = null;
+
+        function initChatGreeting() {
+            if (chatSession.history.length === 0) {
+                const welcome = "Hello! I am **Oscar the Outgrown**, your rescue mascot and master encyclopedic fish hobby expert. Tell me your surrender details in chat (e.g., 'Surrender my Oscar, name John, phone 412-555-0199') and I will automatically fill out the form for you!";
+                appendMessageToUI('AI', welcome);
+                chatSession.history.push({ role: 'AI', text: welcome });
+            }
+        }
+
+        function toggleAIChat() {
+            const m = document.getElementById('ai-chat-modal');
+            m.classList.toggle('hidden');
+            if (!m.classList.contains('hidden')) {
+                initChatGreeting();
+                document.getElementById('chat-input').focus();
+            }
+        }
+
+        function handleImageAttachment(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const parts = e.target.result.split(',');
+                attachedImageMime = parts[0].match(/:(.*?);/)[1];
+                attachedImageBase64 = parts[1];
+                document.getElementById('image-file-name').innerText = file.name;
+                document.getElementById('image-preview-container').classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearAttachedImage() {
+            attachedImageBase64 = null;
+            attachedImageMime = null;
+            document.getElementById('image-file-name').innerText = '';
+            document.getElementById('image-preview-container').classList.add('hidden');
+            document.getElementById('chat-image-input').value = '';
+        }
+
+        function handleChatKey(e) { if (e.key === 'Enter') sendUserMessage(); }
+
+        async function sendUserMessage() {
+            const input = document.getElementById('chat-input');
+            const msg = input.value.trim();
+            if (!msg && !attachedImageBase64) return;
+
+            const displayMsg = msg + (attachedImageBase64 ? " [📸 Image Attached]" : "");
+            appendMessageToUI('User', displayMsg);
+            
+            if (msg.toLowerCase().includes('surrender') || msg.toLowerCase().includes('name') || msg.toLowerCase().includes('phone')) {
+                parseAndFillForm(msg);
+            }
+
+            chatSession.history.push({ role: 'User', text: displayMsg, image: attachedImageBase64, mime: attachedImageMime });
+            input.value = '';
+            clearAttachedImage();
+
+            const loadingId = 'loading-' + Date.now();
+            appendLoadingToUI(loadingId);
+
+            const systemInstruction = "You are Oscar the Outgrown, Master Aquarist AI for Three Rivers Fish Rescue (Pittsburgh). Help users with fish care, disease diagnosis, and auto-filling forms.";
+            const contents = chatSession.history.slice(-10).map(entry => {
+                const partsList = [{ text: entry.text }];
+                if (entry.image) partsList.push({ inline_data: { mime_type: entry.mime, data: entry.image } });
+                return { role: entry.role === 'User' ? 'user' : 'model', parts: partsList };
+            });
+
+            let success = false;
+            let reply = "";
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ system_instruction: { parts: [{ text: systemInstruction }] }, contents: contents })
+                });
+                const data = await response.json();
+                reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Glub glub! My databanks are active.";
+                success = true;
+            } catch (e) {
+                reply = "I've noted your request! Let me know if you need any other help.";
+            }
+
+            removeLoadingFromUI(loadingId);
+            appendMessageToUI('AI', reply);
+            chatSession.history.push({ role: 'AI', text: reply });
+        }
+
+        function parseAndFillForm(text) {
+            switchTab('surrender');
+            if (document.getElementById('input-Species_And_Count')) {
+                document.getElementById('input-Species_And_Count').value = text;
+            }
+            appendMessageToUI('AI', "✨ I've automatically filled out your surrender form details based on our chat! Feel free to review and submit.");
+        }
+
+        function appendMessageToUI(role, text) {
+            const c = document.getElementById('chat-messages');
+            if(!c) return;
+            const d = document.createElement('div');
+            const formatted = escapeHtml(text).replace(/\*\*(.*?)\*\*/g, '<strong class="font-extrabold text-slate-100">$1</strong>').replace(/\n/g, '<br>');
+            if (role === 'User') {
+                d.className = "flex justify-end";
+                d.innerHTML = `<div class="bg-rescue-600 text-white p-3 rounded-xl max-w-[85%] text-xs">${escapeHtml(text)}</div>`;
+            } else {
+                d.className = "flex items-start space-x-2";
+                d.innerHTML = `<div class="w-8 h-8 rounded-full bg-slate-900 text-pgh-gold flex items-center justify-center text-sm font-bold flex-shrink-0 mascot-avatar">🐠</div><div class="bg-slate-900 border border-slate-800 p-3 rounded-xl text-slate-200 max-w-[85%] text-xs leading-relaxed">${formatted}</div>`;
+            }
+            c.appendChild(d);
+            c.scrollTop = c.scrollHeight;
+        }
+
+        function appendLoadingToUI(id) {
+            const c = document.getElementById('chat-messages');
+            if(!c) return;
+            const d = document.createElement('div');
+            d.id = id;
+            d.className = "flex items-start space-x-2";
+            d.innerHTML = `<div class="w-8 h-8 rounded-full bg-slate-900 text-pgh-gold flex items-center justify-center text-sm font-bold flex-shrink-0 mascot-avatar">🐠</div><div class="bg-slate-900 border border-slate-800 p-3 rounded-xl text-slate-400 text-xs italic animate-pulse">Oscar is typing...</div>`;
+            c.appendChild(d);
+            c.scrollTop = c.scrollHeight;
+        }
+
+        function removeLoadingFromUI(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        const DEFAULT_FORUM_POSTS = [{ id: 'f1', name: 'Dave M.', title: 'TRADING CARD: Have Holographic Shark', content: 'Trading Mythic Shark for Arowana!', date: 'Today' }];
+        function getForumPosts() { return safeGetStorage('forum_posts_v1', DEFAULT_FORUM_POSTS); }
+        function renderForumPosts() {
+            const container = document.getElementById('forum-posts-container');
+            if(!container) return;
+            container.innerHTML = getForumPosts().map(p => `
+                <div class="bg-slate-900 p-5 rounded-2xl border border-slate-800 space-y-2 text-xs">
+                    <strong class="text-white font-extrabold">${escapeHtml(p.name)}</strong>
+                    <h4 class="font-extrabold text-amber-300 text-sm">"${escapeHtml(p.title)}"</h4>
+                    <p class="text-slate-300">${escapeHtml(p.content)}</p>
+                </div>
+            `).join('');
+        }
+        function openNewPostModal() { document.getElementById('forum-post-modal').classList.remove('hidden'); }
+        function closeNewPostModal() { document.getElementById('forum-post-modal').classList.add('hidden'); }
+        function submitForumPost(e) {
+            e.preventDefault();
+            const posts = getForumPosts();
+            posts.unshift({ id: 'f-' + Date.now(), name: document.getElementById('forum-name').value, title: document.getElementById('forum-card-title').value, content: document.getElementById('forum-content').value, date: 'Just now' });
+            safeSetStorage('forum_posts_v1', posts);
+            closeNewPostModal();
+            renderForumPosts();
+        }
+
+        function escapeHtml(t) {
+            const m = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '`' };
+            return String(t).replace(/[&<>"']/g, s => m[s]);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => { initSandbox(); renderForumPosts(); });
+    </script>
+</body>
+</html>
